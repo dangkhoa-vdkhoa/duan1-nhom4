@@ -24,6 +24,6 @@ public class LoadingScreen extends AppCompatActivity {
     }
 
     public void code(){
-        String abc = "thang loz kiet dcm";
+        String abc = "thang kiet dcm";
     }
 }
