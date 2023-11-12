@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center|top"
+    android:padding="20dp"
+    tools:context=".WelcomeScreen">
+
+    <ImageView
+        android:layout_width="273dp"
+        android:layout_height="233dp"
+        android:src="@drawable/logo"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Free delivery offers"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="30dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Free delivery for new customers via OderFood and others payment methods"
+        android:gravity="center"
+        android:layout_marginBottom="120dp"/>
+
+    <Button
+        android:id="@+id/btnGetStart"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:backgroundTint="#369B44"
+        android:text="Get Started"
+        android:textSize="20dp"
+        app:cornerRadius="20dp" />
+
+</LinearLayout>
