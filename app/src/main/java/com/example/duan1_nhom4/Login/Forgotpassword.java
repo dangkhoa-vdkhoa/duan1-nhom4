@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan1_nhom4.R;
@@ -17,6 +18,15 @@ public class Forgotpassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgotpassword);
+
+        TextView btnbackforgot = findViewById(R.id.btnbackforgot);
+        btnbackforgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Forgotpassword.this, LoginApp.class);
+                startActivity(intent);
+            }
+        });
 
         edtEmailQuen = findViewById(R.id.edtEmailQuen);
 
