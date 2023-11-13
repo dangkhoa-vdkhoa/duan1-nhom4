@@ -126,7 +126,7 @@ public class DangKy extends AppCompatActivity {
         if (TextUtils.isEmpty(usename) || TextUtils.isEmpty(hoten) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             Toast.makeText(DangKy.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
         } else if (!usename.endsWith("+@gofood.com")) {
-            Toast.makeText(this, "username phải có định dạng '@gofood.com' ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "username phải có định dạng '@gofood.com' ", Toast.LENGTH_SHORT).show();
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(DangKy.this, "Email không hợp lệ", Toast.LENGTH_SHORT).show();
         }else if (password.length() < 6) {
@@ -134,29 +134,28 @@ public class DangKy extends AppCompatActivity {
         }else {
             if (!password.equals(passreturn)){
                 Toast.makeText(DangKy.this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
-            }
-            return;
-        }
-        mAthur.createUserWithEmailAndPassword(usename, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    FirebaseUser user = mAthur.getCurrentUser();
-                    Toast.makeText(DangKy.this, "Đăng ký thành công ", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(DangKy.this, LoginApp.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                        Toast.makeText(DangKy.this, "Email đã được sử dụng bởi người dùng khác", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Log.w(TAG, "createUserWithEmailAndPassword:failure", task.getException());
-                        Toast.makeText(DangKy.this, "Đăng ký thất bại: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+            }else {
+                mAthur.createUserWithEmailAndPassword(usename, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAthur.getCurrentUser();
+                            Toast.makeText(DangKy.this, "Đăng ký thành công ", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(DangKy.this, LoginApp.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                Toast.makeText(DangKy.this, "Email đã được sử dụng bởi người dùng khác", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Log.w(TAG, "createUserWithEmailAndPassword:failure", task.getException());
+                                Toast.makeText(DangKy.this, "Đăng ký thất bại: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
                     }
-                }
+                });
             }
-        });
-
+        }
     }
 
 
