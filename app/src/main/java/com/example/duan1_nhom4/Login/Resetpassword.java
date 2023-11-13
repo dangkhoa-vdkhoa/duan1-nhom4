@@ -56,6 +56,8 @@ public class Resetpassword extends AppCompatActivity {
                     }
                 } else {
                     Toast.makeText(Resetpassword.this, "Enter new password and confirm password", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Resetpassword.this, LoginApp.class);
+                    startActivity(intent);
                 }
             }
         });
