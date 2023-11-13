@@ -22,8 +22,4 @@ public class LoadingScreen extends AppCompatActivity {
             }
         },3000);
     }
-
-    public void code(){
-        String abc = "thang kiet an cuc";
-    }
 }
