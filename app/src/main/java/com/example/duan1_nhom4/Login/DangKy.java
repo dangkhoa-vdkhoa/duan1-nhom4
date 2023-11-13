@@ -125,7 +125,7 @@ public class DangKy extends AppCompatActivity {
         // Kiểm tra xem các trường thông tin đã được nhập đầy đủ hay chưa
         if (TextUtils.isEmpty(usename) || TextUtils.isEmpty(hoten) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             Toast.makeText(DangKy.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-        } else if (!usename.endsWith("+@gofood.com")) {
+        } else if (!usename.endsWith("@gofood.com")) {
                 Toast.makeText(this, "username phải có định dạng '@gofood.com' ", Toast.LENGTH_SHORT).show();
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(DangKy.this, "Email không hợp lệ", Toast.LENGTH_SHORT).show();

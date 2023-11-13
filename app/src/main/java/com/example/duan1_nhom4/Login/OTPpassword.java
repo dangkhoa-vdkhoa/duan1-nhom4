@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan1_nhom4.R;
@@ -20,6 +21,16 @@ public class OTPpassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otppassword);
         edtOTP = findViewById(R.id.edtOPT);
+
+        TextView btnbackotp = findViewById(R.id.btnbackotp);
+
+        btnbackotp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OTPpassword.this, Forgotpassword.class);
+                startActivity(intent);
+            }
+        });
 
         // Retrieve the email from the intent
         userEmail = getIntent().getStringExtra("email");

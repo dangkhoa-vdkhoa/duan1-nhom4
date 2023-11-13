@@ -2,10 +2,12 @@ package com.example.duan1_nhom4.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan1_nhom4.R;
@@ -27,6 +29,15 @@ public class Resetpassword extends AppCompatActivity {
         edtNewPassword = findViewById(R.id.edtNewPassword);
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
 
+        TextView btnbacknewpass = findViewById(R.id.btnbacknewpass);
+        btnbacknewpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Resetpassword.this, OTPpassword.class);
+                startActivity(intent);
+            }
+        });
+
         // Retrieve the email from the intent
         userEmail = getIntent().getStringExtra("email");
 
@@ -45,6 +56,8 @@ public class Resetpassword extends AppCompatActivity {
                     }
                 } else {
                     Toast.makeText(Resetpassword.this, "Enter new password and confirm password", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Resetpassword.this, LoginApp.class);
+                    startActivity(intent);
                 }
             }
         });
