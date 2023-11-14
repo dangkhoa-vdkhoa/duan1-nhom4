@@ -1,20 +1,18 @@
 package com.example.duan1_nhom4.main;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager2.widget.ViewPager2;
-
-import android.os.Bundle;
-import android.view.View;
-
-//import com.example.duan1_nhom4.databinding.ActivityMainBinding;
 
 import com.example.duan1_nhom4.R;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.duan1_nhom4.databinding.ActivityMainBinding;
+import com.example.duan1_nhom4.fragment.DonHangFragment;
+import com.example.duan1_nhom4.fragment.HomeFragment;
+import com.example.duan1_nhom4.fragment.ThongBaoFragment;
+import com.example.duan1_nhom4.fragment.ToiFragment;
 
 public class MainActivity extends AppCompatActivity {
 

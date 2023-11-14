@@ -5,7 +5,7 @@ public class SlideIten {
 
     private int image;
 
-    SlideIten(int image){
+    public SlideIten(int image){
         this.image = image;
     }
 
