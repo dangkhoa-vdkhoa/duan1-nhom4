@@ -1,4 +1,4 @@
-package com.example.duan1_nhom4;
+package com.example.duan1_nhom4.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -9,7 +9,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.duan1_nhom4.databinding.ActivityMainBinding;
+//import com.example.duan1_nhom4.databinding.ActivityMainBinding;
+
+import com.example.duan1_nhom4.R;
 
 import java.util.ArrayList;
 import java.util.List;

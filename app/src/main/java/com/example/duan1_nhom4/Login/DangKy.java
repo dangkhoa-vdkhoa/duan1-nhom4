@@ -21,7 +21,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.duan1_nhom4.MainActivity;
+import com.example.duan1_nhom4.main.MainActivity;
 import com.example.duan1_nhom4.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -41,7 +41,6 @@ public class DangKy extends AppCompatActivity {
 
     private FirebaseAuth mAthur;
 
-    EditText edtnamedangky;
     EditText edthotendangky;
     EditText edtEmail;
     EditText edtpass;
@@ -53,12 +52,6 @@ public class DangKy extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dang_ky);
         mAthur = FirebaseAuth.getInstance();
-
-        if (mAthur == null) {
-            Toast.makeText(this, "Firebase initialization failed", Toast.LENGTH_SHORT).show();
-            finish();
-        }
-
 
         SignInButton signUpButton = findViewById(R.id.sign_up_button);
         signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +72,6 @@ public class DangKy extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        edtnamedangky = findViewById(R.id.edtnamedangky);
         edthotendangky = findViewById(R.id.edthotendangky);
         edtEmail = findViewById(R.id.edtEmail);
         edtpass = findViewById(R.id.edtpassdangky);
@@ -116,18 +108,15 @@ public class DangKy extends AppCompatActivity {
     });
 
     public void dangky(){
-        String usename = edtnamedangky.getText().toString();
         String hoten = edthotendangky.getText().toString();
         String email = edtEmail.getText().toString();
         String password = edtpass.getText().toString();
         String passreturn = edtpassreturn.getText().toString();
 
         // Kiểm tra xem các trường thông tin đã được nhập đầy đủ hay chưa
-        if (TextUtils.isEmpty(usename) || TextUtils.isEmpty(hoten) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+        if (TextUtils.isEmpty(hoten) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             Toast.makeText(DangKy.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-        } else if (!usename.endsWith("@gofood.com")) {
-                Toast.makeText(this, "username phải có định dạng '@gofood.com' ", Toast.LENGTH_SHORT).show();
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(DangKy.this, "Email không hợp lệ", Toast.LENGTH_SHORT).show();
         }else if (password.length() < 6) {
             Toast.makeText(DangKy.this, "Mật khẩu phải có ít nhất 6 ký tự", Toast.LENGTH_SHORT).show();
@@ -135,7 +124,7 @@ public class DangKy extends AppCompatActivity {
             if (!password.equals(passreturn)){
                 Toast.makeText(DangKy.this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
             }else {
-                mAthur.createUserWithEmailAndPassword(usename, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                mAthur.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {

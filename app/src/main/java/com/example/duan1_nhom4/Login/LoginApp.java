@@ -19,7 +19,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.duan1_nhom4.MainActivity;
+import com.example.duan1_nhom4.main.MainActivity;
 import com.example.duan1_nhom4.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;

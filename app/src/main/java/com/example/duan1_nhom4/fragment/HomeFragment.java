@@ -1,4 +1,4 @@
-package com.example.duan1_nhom4;
+package com.example.duan1_nhom4.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,6 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.duan1_nhom4.AdapterProduct;
+import com.example.duan1_nhom4.Product;
+import com.example.duan1_nhom4.R;
+import com.example.duan1_nhom4.SlideAdapter;
+import com.example.duan1_nhom4.SlideIten;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +31,6 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     public HomeFragment() {
-        // Required empty public constructor
 
     }
 

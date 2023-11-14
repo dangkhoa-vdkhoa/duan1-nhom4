@@ -1,4 +1,4 @@
-package com.example.duan1_nhom4;
+package com.example.duan1_nhom4.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.duan1_nhom4.Login.LoginApp;
+import com.example.duan1_nhom4.R;
 
 public class WelcomeScreen extends AppCompatActivity {
 

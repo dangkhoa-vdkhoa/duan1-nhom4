@@ -1,10 +1,12 @@
-package com.example.duan1_nhom4;
+package com.example.duan1_nhom4.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.duan1_nhom4.R;
 
 public class LoadingScreen extends AppCompatActivity {
     Handler handler;
