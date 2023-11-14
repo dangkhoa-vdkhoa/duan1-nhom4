@@ -38,7 +38,7 @@ public class AddProduct extends AppCompatActivity {
     private void InsertData() {
         String name = edtName.getText().toString();
         String id = database.push().getKey();
-        Product product = new Product(name);
+        Product product = new Product(name,R.drawable.img);
 
         database.child("products").child(id).setValue(product)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

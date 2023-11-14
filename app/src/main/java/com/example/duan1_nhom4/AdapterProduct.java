@@ -36,7 +36,8 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Product product = list.get(position);
-        holder.tvProduct.setText(product.getTen());
+        holder.tvProduct.setText(product.ten);
+        holder.imgProduct.setImageResource(product.hinh);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         ImageView imgProduct;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvProduct = itemView.findViewById(R.id.tvProduct);
+            tvProduct = itemView.findViewById(R.id.tvNameProduct);
             imgProduct = itemView.findViewById(R.id.imgProduct);
         }
     }

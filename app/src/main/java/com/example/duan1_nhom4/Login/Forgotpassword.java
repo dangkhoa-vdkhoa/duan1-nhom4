@@ -2,7 +2,6 @@ package com.example.duan1_nhom4.Login;
 
 import static android.content.ContentValues.TAG;
 
-import static com.example.duan1_nhom4.Login.Utils.generateOTP;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

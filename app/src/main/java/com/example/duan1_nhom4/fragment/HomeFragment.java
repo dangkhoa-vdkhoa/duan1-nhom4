@@ -1,15 +1,18 @@
 package com.example.duan1_nhom4.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.duan1_nhom4.AdapterProduct;
 import com.example.duan1_nhom4.R;
@@ -53,11 +56,11 @@ public class HomeFragment extends Fragment {
         viewPager2.setAdapter(new SlideAdapter(slideIten,viewPager2));
 
         recyclerView = view.findViewById(R.id.recyclerView);
-        database = FirebaseDatabase.getInstance().getReference("Product");
+        database = FirebaseDatabase.getInstance().getReference("products");
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(),2));
 
-        list = new ArrayList<>();
+        list = new ArrayList<Product>();
         myAdapter = new AdapterProduct(requireContext(),list);
         recyclerView.setAdapter(myAdapter);
 

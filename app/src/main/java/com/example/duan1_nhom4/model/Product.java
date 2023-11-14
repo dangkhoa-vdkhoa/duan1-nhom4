@@ -4,17 +4,15 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class Product {
-    private String ten;
+    public String ten;
+    public int hinh;
 
-    public Product(String ten) {
+
+    public Product(String ten, int hinh) {
         this.ten = ten;
+        this.hinh = hinh;
     }
 
-    public String getTen() {
-        return ten;
-    }
-
-    public void setTen(String name) {
-        this.ten = ten;
+    public Product() {
     }
 }
