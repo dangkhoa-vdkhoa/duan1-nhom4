@@ -1,5 +1,6 @@
 package com.example.duan1_nhom4;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.MyViewHolder> {
+public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHolder> {
 
     Context context;
     ArrayList<Product> list;
@@ -24,17 +25,16 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.MyViewHo
 
     @NonNull
     @Override
-
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(context).inflate(R.layout.item_recycerview,parent,false);
-        return new MyViewHolder(view);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+        View view = inflater.inflate(R.layout.item_recycerview,parent,false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Product product = list.get(position);
-        holder.tvProduct.setText(product.getName());
+        holder.tvProduct.setText(product.getTen());
     }
 
     @Override
@@ -42,12 +42,13 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.MyViewHo
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvProduct;
-        public MyViewHolder(@NonNull View itemView) {
+        ImageView imgProduct;
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             tvProduct = itemView.findViewById(R.id.tvProduct);
+            imgProduct = itemView.findViewById(R.id.imgProduct);
         }
     }
 }

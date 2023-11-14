@@ -29,19 +29,25 @@ public class AddProduct extends AppCompatActivity {
         btnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = edtName.getText().toString();
-                Product product = new Product(name);
-                String id = database.push().getKey();
-                database.child("Product").child(id).setValue(product)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()){
-                                    Toast.makeText(AddProduct.this, "Products Details Inserted", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                InsertData();
             }
         });
+    }
+
+
+    private void InsertData() {
+        String name = edtName.getText().toString();
+        String id = database.push().getKey();
+        Product product = new Product(name);
+
+        database.child("products").child(id).setValue(product)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(AddProduct.this, "Products Details Inserted", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+    });
     }
 }
