@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.duan1_nhom4.R;
+import com.example.duan1_nhom4.gioithieuActivity.GioiThieu;
 
 public class LoadingScreen extends AppCompatActivity {
     Handler handler;
@@ -18,7 +19,7 @@ public class LoadingScreen extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(LoadingScreen.this,WelcomeScreen.class);
+                Intent intent = new Intent(LoadingScreen.this, GioiThieu.class);
                 startActivity(intent);
                 finish();
             }

@@ -57,5 +57,7 @@ dependencies {
 
     implementation 'androidx.cardview:cardview:1.0.0'
 
+    // thu vien mang hinh loanding
+    implementation 'com.ramotion.paperonboarding:paper-onboarding:1.1.3'
 
 }
