@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(new HomeFragment());
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
-
             if (item.getItemId() == R.id.home){
                 replaceFragment(new HomeFragment());
             }else if (item.getItemId() == R.id.notification){

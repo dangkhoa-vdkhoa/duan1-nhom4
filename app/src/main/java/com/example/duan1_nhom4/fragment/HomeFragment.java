@@ -7,9 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -20,6 +23,8 @@ import com.example.duan1_nhom4.R;
 import com.example.duan1_nhom4.SlideAdapter;
 import com.example.duan1_nhom4.model.Product;
 import com.example.duan1_nhom4.model.SlideIten;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +39,8 @@ public class HomeFragment extends Fragment {
     public HomeFragment() {
 
     }
+
+
     Context context;
     ViewPager2 viewPager2;
     RecyclerView recyclerView;
@@ -43,9 +50,15 @@ public class HomeFragment extends Fragment {
 
     ImageView ivProfile;
 
+    FirebaseUser currentUser;
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -86,16 +99,30 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
         ivProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), LoginApp.class);
-                startActivity(intent);
+                if (currentUser != null) {
+                    replaceFragmenthome(new ToiFragment());
+                } else {
+                    Toast.makeText(requireContext(), "Vui lòng đăng nhập để xem thông tin tài khoản", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(requireContext(), LoginApp.class);
+                    startActivity(intent);
+                }
             }
         });
 
-
-
         return view;
     }
+
+
+    private void replaceFragmenthome(Fragment fragment){
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout,fragment);
+        fragmentTransaction.commit();
+    }
+
 }

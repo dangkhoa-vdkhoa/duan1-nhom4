@@ -2,13 +2,6 @@ package com.example.duan1_nhom4.Login;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +12,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.duan1_nhom4.main.MainActivity;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.duan1_nhom4.R;
+import com.example.duan1_nhom4.main.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -45,7 +45,14 @@ public class LoginApp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_app);
 
-
+        TextView btnback = findViewById(R.id.btnbacklogin);
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginApp.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
         edtnameLogin = findViewById(R.id.edtnameLogin);
         edtpassLogin = findViewById(R.id.edtpassLogin);
         mAuthLogin = FirebaseAuth.getInstance();
@@ -53,7 +60,17 @@ public class LoginApp extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dangnhap();
+                FirebaseUser currentUser = mAuthLogin.getCurrentUser();
+                if (currentUser != null) {
+                    startActivity(new Intent(LoginApp.this, MainActivity.class));
+                } else {
+                    if (checklogin()) {
+                        dangnhap();
+                    } else {
+                        Toast.makeText(LoginApp.this, "Vui lòng điền đầy đủ thông tin đăng nhập", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
             }
         });
 
@@ -125,5 +142,12 @@ public class LoginApp extends AppCompatActivity {
 
             }
         });
+    }
+
+    private boolean checklogin() {
+        String username = edtnameLogin.getText().toString().trim();
+        String password = edtpassLogin.getText().toString().trim();
+
+        return !username.isEmpty() && !password.isEmpty();
     }
 }
