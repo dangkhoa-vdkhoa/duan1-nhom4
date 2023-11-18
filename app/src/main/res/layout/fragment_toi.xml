@@ -124,7 +124,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/like"/>
+                android:src="@drawable/admin"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
                 android:textSize="20dp"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/black"
-                android:text="Đã thích"/>
+                android:text="Chức năng admin"/>
         </LinearLayout>
 
         <LinearLayout

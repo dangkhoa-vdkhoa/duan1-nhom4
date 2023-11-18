@@ -13,6 +13,8 @@ import com.example.duan1_nhom4.Login.Forgotpassword;
 import com.example.duan1_nhom4.Login.LoginApp;
 import com.example.duan1_nhom4.Map;
 import com.example.duan1_nhom4.R;
+import com.example.duan1_nhom4.main.AdminActivity;
+import com.example.duan1_nhom4.main.MainActivity;
 
 public class ToiFragment extends Fragment {
     View btnToiVocher;
@@ -61,7 +63,9 @@ public class ToiFragment extends Fragment {
         btnToiDaThich.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Đã thích", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Chức năng admin", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), AdminActivity.class);
+                startActivity(intent);
             }
         });
         btnToiDMK.setOnClickListener(new View.OnClickListener() {
