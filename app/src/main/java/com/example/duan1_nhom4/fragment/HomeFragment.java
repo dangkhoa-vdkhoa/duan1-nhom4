@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.duan1_nhom4.AdapterProduct;
+import com.example.duan1_nhom4.adapter.AdapterProduct;
 import com.example.duan1_nhom4.Login.LoginApp;
 import com.example.duan1_nhom4.R;
 import com.example.duan1_nhom4.SlideAdapter;

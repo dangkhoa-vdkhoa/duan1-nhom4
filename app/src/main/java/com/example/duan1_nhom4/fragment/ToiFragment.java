@@ -2,15 +2,16 @@ package com.example.duan1_nhom4.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
+import com.example.duan1_nhom4.Login.Forgotpassword;
 import com.example.duan1_nhom4.Login.LoginApp;
+import com.example.duan1_nhom4.Map;
 import com.example.duan1_nhom4.R;
 
 public class ToiFragment extends Fragment {
@@ -52,6 +53,8 @@ public class ToiFragment extends Fragment {
         btnToiDiaChi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(requireContext(), Map.class);
+                startActivity(intent);
                 Toast.makeText(getContext(), "Địa chỉ", Toast.LENGTH_SHORT).show();
             }
         });
@@ -64,7 +67,9 @@ public class ToiFragment extends Fragment {
         btnToiDMK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Đổi mật khẩu", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(requireContext(), Forgotpassword.class);
+                startActivity(intent);
+//                Toast.makeText(getContext(), "Đổi mật khẩu", Toast.LENGTH_SHORT).show();
             }
         });
         btnToiGioHang.setOnClickListener(new View.OnClickListener() {

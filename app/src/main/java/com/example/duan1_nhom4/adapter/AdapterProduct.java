@@ -1,4 +1,4 @@
-package com.example.duan1_nhom4;
+package com.example.duan1_nhom4.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.duan1_nhom4.R;
 import com.example.duan1_nhom4.model.Product;
 
 import java.util.ArrayList;
