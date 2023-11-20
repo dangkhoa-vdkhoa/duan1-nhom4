@@ -9,12 +9,10 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.duan1_nhom4.Login.Forgotpassword;
 import com.example.duan1_nhom4.Login.LoginApp;
+import com.example.duan1_nhom4.Login.Resetpassword;
 import com.example.duan1_nhom4.Map;
 import com.example.duan1_nhom4.R;
-import com.example.duan1_nhom4.main.AdminActivity;
-import com.example.duan1_nhom4.main.MainActivity;
 
 public class ToiFragment extends Fragment {
     View btnToiVocher;
@@ -64,16 +62,15 @@ public class ToiFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Chức năng admin", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), AdminActivity.class);
+                Intent intent = new Intent(getContext(), LoginApp.class);
                 startActivity(intent);
             }
         });
         btnToiDMK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(requireContext(), Forgotpassword.class);
+                Intent intent = new Intent(requireContext(), Resetpassword.class);
                 startActivity(intent);
-//                Toast.makeText(getContext(), "Đổi mật khẩu", Toast.LENGTH_SHORT).show();
             }
         });
         btnToiGioHang.setOnClickListener(new View.OnClickListener() {

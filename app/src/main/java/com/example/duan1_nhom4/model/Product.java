@@ -1,7 +1,7 @@
 package com.example.duan1_nhom4.model;
 
-import com.google.firebase.database.IgnoreExtraProperties;
 
+import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Product {
     public String ten;
@@ -15,4 +15,6 @@ public class Product {
 
     public Product() {
     }
+
+
 }

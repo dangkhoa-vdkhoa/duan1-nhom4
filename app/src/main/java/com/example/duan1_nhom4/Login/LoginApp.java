@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.duan1_nhom4.R;
+import com.example.duan1_nhom4.main.AdminActivity;
 import com.example.duan1_nhom4.main.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -62,16 +63,12 @@ public class LoginApp extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseUser currentUser = mAuthLogin.getCurrentUser();
                 if (currentUser != null) {
-                    startActivity(new Intent(LoginApp.this, MainActivity.class));
+                    checklogin(currentUser.getEmail());
+                    dangnhap();
                 } else {
-                    if (checklogin()) {
-                        dangnhap();
-                    } else {
                         Toast.makeText(LoginApp.this, "Vui lòng điền đầy đủ thông tin đăng nhập", Toast.LENGTH_SHORT).show();
                     }
                 }
-
-            }
         });
 
         TextView tvquenmk = findViewById(R.id.tvquenmk);
@@ -113,9 +110,8 @@ public class LoginApp extends AppCompatActivity {
                     String email = account.getEmail();
                     String name = account.getDisplayName();
                     Toast.makeText(LoginApp.this, "Đăng nhập thành công "+"\n"+"email: "+ email+"\n"+"name: "+name, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginApp.this, MainActivity.class);
-                    startActivity(intent);
-                }catch (Exception e){
+                    checklogin(email);
+                } catch (Exception e){
                     Log.e(TAG,"onFailure: ",e);
                 }
             }else {
@@ -144,10 +140,24 @@ public class LoginApp extends AppCompatActivity {
         });
     }
 
-    private boolean checklogin() {
-        String username = edtnameLogin.getText().toString().trim();
+    private boolean checklogin(String username) {
+        username = edtnameLogin.getText().toString().trim();
         String password = edtpassLogin.getText().toString().trim();
-
+        if (username.equals("duan01fpt@gmail.com")) {
+            Toast.makeText(this, "Đang đăng nhập bằng tài khoản admin", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(LoginApp.this, AdminActivity.class));
+        } else {
+            startActivity(new Intent(LoginApp.this, MainActivity.class));
+        }
         return !username.isEmpty() && !password.isEmpty();
     }
+
+//    private void checkAndRedirect(String email) {
+//        if (email.equals("duan01fpt@gmail.com")) {
+//            Toast.makeText(this, "Đang đăng nhập bằng tài khoản admin", Toast.LENGTH_SHORT).show();
+//            startActivity(new Intent(LoginApp.this, AdminActivity.class));
+//        } else {
+//            startActivity(new Intent(LoginApp.this, MainActivity.class));
+//        }
+//    }
 }
