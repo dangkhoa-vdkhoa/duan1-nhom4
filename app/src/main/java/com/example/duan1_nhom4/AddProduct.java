@@ -26,28 +26,28 @@ public class AddProduct extends AppCompatActivity {
         btnInsert = findViewById(R.id.btnInsert);
         edtName = findViewById(R.id.edtName);
         database = FirebaseDatabase.getInstance().getReference();
-        btnInsert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                InsertData();
-            }
-        });
+//        btnInsert.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                InsertData();
+//            }
+//        });
     }
 
 
-    private void InsertData() {
-        String name = edtName.getText().toString();
-        String id = database.push().getKey();
-        Product product = new Product(name,R.drawable.img);
-
-        database.child("products").child(id).setValue(product)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(AddProduct.this, "Products Details Inserted", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-    });
-    }
+//    private void InsertData() {
+//        String name = edtName.getText().toString();
+//        String id = database.push().getKey();
+//        Product product = new Product(name,R.drawable.img);
+//
+//        database.child("products").child(id).setValue(product)
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful()){
+//                            Toast.makeText(AddProduct.this, "Products Details Inserted", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//    });
+//    }
 }

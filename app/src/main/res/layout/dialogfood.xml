@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edTenFood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên món"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edGiaFood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Giá bán"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <EditText
+        android:id="@+id/edtURL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="Enter your url to load image" />
+
+    <Button
+        android:id="@+id/btnInsertImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtURL"
+        android:text="insert image"
+        android:textAllCaps="true" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/imgAddIMG"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/edtURL"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/logo" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Hủy"
+            android:backgroundTint="#DB8606"
+            android:layout_marginRight="100dp"
+            android:id="@+id/btnCancel"/>
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Thêm"
+            android:backgroundTint="#DB8606"
+            android:id="@+id/btnSave"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

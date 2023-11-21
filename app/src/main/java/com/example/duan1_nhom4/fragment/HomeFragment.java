@@ -39,9 +39,6 @@ public class HomeFragment extends Fragment {
     public HomeFragment() {
 
     }
-
-
-    Context context;
     ViewPager2 viewPager2;
     RecyclerView recyclerView;
     DatabaseReference database;
@@ -124,5 +121,4 @@ public class HomeFragment extends Fragment {
         fragmentTransaction.replace(R.id.frame_layout,fragment);
         fragmentTransaction.commit();
     }
-
 }

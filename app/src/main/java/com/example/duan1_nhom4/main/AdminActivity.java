@@ -38,11 +38,12 @@ public class AdminActivity extends AppCompatActivity {
 //
 //            return true;
 //        });
+        replaceFragment(new HomeFragmentAdmin());
     }
-//    private void replaceFragment(Fragment fragment){
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.frame_layoutAdmin,fragment);
-//        fragmentTransaction.commit();
-//    }
+    private void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layoutAdmin,fragment);
+        fragmentTransaction.commit();
+    }
 }
