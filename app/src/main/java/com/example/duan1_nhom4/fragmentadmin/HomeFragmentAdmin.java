@@ -95,7 +95,7 @@ public class HomeFragmentAdmin extends Fragment {
 
     ProgressBar progressBar;
     private Uri imgUri;
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("Image");
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("products");
     private StorageReference reference = FirebaseStorage.getInstance().getReference();
 
     Button btnInsertImage;

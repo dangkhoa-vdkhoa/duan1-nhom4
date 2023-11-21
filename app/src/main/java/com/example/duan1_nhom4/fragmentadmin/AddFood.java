@@ -25,6 +25,7 @@ import com.example.duan1_nhom4.main.AdminActivity;
 import com.example.duan1_nhom4.model.Product;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -37,12 +38,18 @@ public class AddFood extends AppCompatActivity {
 
     private Button uploadBtn, showAllBtn;
     private ImageView imageView;
+
+    private Button btnChooseFile;
     private ProgressBar progressBar;
 
     //vars
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("Image");
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("products");
     private StorageReference reference = FirebaseStorage.getInstance().getReference();
     private Uri imageUri;
+
+    private TextInputEditText edtTen;
+    private TextInputEditText edtGia;
+    private TextInputEditText edtMoTa;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +60,10 @@ public class AddFood extends AppCompatActivity {
         showAllBtn = findViewById(R.id.showall_btn);
         progressBar = findViewById(R.id.progressBar);
         imageView = findViewById(R.id.imageView);
+        btnChooseFile = findViewById(R.id.chooseFile_btn);
+        edtTen = findViewById(R.id.edtTenSanPhamAdd);
+        edtGia = findViewById(R.id.edtGiaSanPhamAdd);
+        edtMoTa = findViewById(R.id.edtMoTaSanPhamAdd);
 
         progressBar.setVisibility(View.INVISIBLE);
 
@@ -63,7 +74,7 @@ public class AddFood extends AppCompatActivity {
             }
         });
 
-        imageView.setOnClickListener(new View.OnClickListener() {
+        btnChooseFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent galleryIntent = new Intent();
@@ -106,8 +117,10 @@ public class AddFood extends AppCompatActivity {
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-
-                        Product product = new Product(uri.toString(),"hin1ã");
+                        String ten = edtTen.getText().toString().trim();
+                        String gia = edtGia.getText().toString().trim();
+                        String mota = edtMoTa.getText().toString().trim();
+                        Product product = new Product(uri.toString(),ten,gia,mota);
                         String modelId = root.push().getKey();
                         root.child(modelId).setValue(product);
                         progressBar.setVisibility(View.INVISIBLE);
