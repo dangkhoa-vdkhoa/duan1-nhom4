@@ -50,8 +50,7 @@ public class LoginApp extends AppCompatActivity {
         btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginApp.this, MainActivity.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
         edtnameLogin = findViewById(R.id.edtnameLogin);
