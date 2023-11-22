@@ -18,6 +18,12 @@ public class Product {
         this.mota = mota;
     }
 
+    public Product(String hinh, String ten, String gia) {
+        this.ten = ten;
+        this.hinh = hinh;
+        this.gia = gia;
+    }
+
     public String getTen() {
         return ten;
     }

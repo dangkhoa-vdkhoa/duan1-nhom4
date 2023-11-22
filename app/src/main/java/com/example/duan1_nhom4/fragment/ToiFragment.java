@@ -13,6 +13,8 @@ import com.example.duan1_nhom4.Login.LoginApp;
 import com.example.duan1_nhom4.Login.Resetpassword;
 import com.example.duan1_nhom4.Map;
 import com.example.duan1_nhom4.R;
+import com.example.duan1_nhom4.fragmentadmin.HomeFragmentAdmin;
+import com.example.duan1_nhom4.main.AdminActivity;
 
 public class ToiFragment extends Fragment {
     View btnToiVocher;
@@ -62,7 +64,7 @@ public class ToiFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Chức năng admin", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), LoginApp.class);
+                Intent intent = new Intent(getContext(), AdminActivity.class);
                 startActivity(intent);
             }
         });

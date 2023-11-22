@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp">
     <LinearLayout
+        android:id="@+id/btnThemGHHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -12,13 +13,13 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:id="@+id/m_image"
+        android:id="@+id/m_imageHome"
 
         android:scaleType="centerCrop"/>
         <TextView
             android:textSize="15dp"
             android:layout_gravity="center"
-            android:id="@+id/tenFood"
+            android:id="@+id/tenFoodHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="abc"/>
@@ -31,8 +32,7 @@
                 android:textSize="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:id="@+id/tvGiaFood"
+                android:id="@+id/tvGiaFoodHome"
                 android:text="abc"
                 android:textColor="#FF0000"/>
             <TextView

@@ -95,7 +95,7 @@ public class HomeFragmentAdmin extends Fragment {
 
     ProgressBar progressBar;
     private Uri imgUri;
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("products");
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("Image");
     private StorageReference reference = FirebaseStorage.getInstance().getReference();
 
     Button btnInsertImage;
@@ -145,7 +145,7 @@ public class HomeFragmentAdmin extends Fragment {
 
         recyclerView.setAdapter(myAdapter);
 
-        root = FirebaseDatabase.getInstance().getReference("Image");
+        root = FirebaseDatabase.getInstance().getReference("products");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(requireContext(),2));
 

@@ -16,12 +16,12 @@ import com.example.duan1_nhom4.model.Product;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class ThemGHAdapter extends RecyclerView.Adapter<ThemGHAdapter.MyViewHolder> {
 
     private ArrayList<Product> mList;
     private Context context;
 
-    public MyAdapter(Context context , ArrayList<Product> mList){
+    public ThemGHAdapter(Context context , ArrayList<Product> mList){
 
         this.context = context;
         this.mList = mList;
@@ -30,7 +30,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item , parent ,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.themgdlayout , parent ,false);
         return new MyViewHolder(v);
     }
 
@@ -49,14 +49,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageView;
+        View addGHFood;
         TextView tenFood,tvGiaFood;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.m_image);
-            tenFood = itemView.findViewById(R.id.tenFood);
-            tvGiaFood = itemView.findViewById(R.id.tvGiaFood);
+            imageView = itemView.findViewById(R.id.m_imageHome);
+            tenFood = itemView.findViewById(R.id.tenFoodHome);
+            tvGiaFood = itemView.findViewById(R.id.tvGiaFoodHome);
+            addGHFood = itemView.findViewById(R.id.btnThemGHHome);
 
         }
     }
