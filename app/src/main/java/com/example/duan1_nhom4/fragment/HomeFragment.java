@@ -1,6 +1,5 @@
 package com.example.duan1_nhom4.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,12 +17,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.duan1_nhom4.adapter.AdapterProduct;
 import com.example.duan1_nhom4.Login.LoginApp;
 import com.example.duan1_nhom4.R;
 import com.example.duan1_nhom4.SlideAdapter;
 import com.example.duan1_nhom4.adapter.HomeAdapter;
-import com.example.duan1_nhom4.adapter.MyAdapter;
 import com.example.duan1_nhom4.model.Product;
 import com.example.duan1_nhom4.model.SlideIten;
 import com.google.firebase.auth.FirebaseAuth;

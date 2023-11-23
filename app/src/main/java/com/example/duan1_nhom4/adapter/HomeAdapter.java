@@ -5,16 +5,19 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.duan1_nhom4.R;
 import com.example.duan1_nhom4.main.ThemGHActivity;
 import com.example.duan1_nhom4.model.Product;
+
 
 import java.util.ArrayList;
 
@@ -38,21 +41,19 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        MyViewHolder myViewHolder = (MyViewHolder) holder;
+        Product product = mList.get(position);
+        myViewHolder.tenFood.setText(mList.get(position).getTen());
+        myViewHolder.tvGiaFood.setText(mList.get(position).getGia());
         Glide.with(context).load(mList.get(position).getHinh()).into(holder.imageView);
-        holder.tenFood.setText(mList.get(position).getTen());
-        holder.tvGiaFood.setText(mList.get(position).getGia());
-        holder.addGHFood.setOnClickListener(new View.OnClickListener() {
+
+        myViewHolder.layout_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int clickedPosition = holder.getAdapterPosition();
-                if (clickedPosition != RecyclerView.NO_POSITION) {
-                    Product clickedProduct = mList.get(clickedPosition);
-
-                    // Tạo Intent để chuyển đến ThemGHActivity và gửi thông tin sản phẩm
-                    Intent intent = new Intent(view.getContext(), ThemGHActivity.class);
-                    intent.putExtra("products", String.valueOf(clickedProduct)); // Gửi toàn bộ thông tin sản phẩm
-                    view.getContext().startActivity(intent);
-                }
+               Intent intent = new Intent(context, ThemGHActivity.class);
+               intent.putExtra("chitiet",product);
+               intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+               context.startActivity(intent);
             }
         });
     }
@@ -63,7 +64,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-
+        CardView layout_item;
         ImageView imageView;
         View addGHFood;
         TextView tenFood,tvGiaFood;
@@ -71,6 +72,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            layout_item = itemView.findViewById(R.id.layout_item);
             imageView = itemView.findViewById(R.id.m_imageHome);
             tenFood = itemView.findViewById(R.id.tenFoodHome);
             tvGiaFood = itemView.findViewById(R.id.tvGiaFoodHome);

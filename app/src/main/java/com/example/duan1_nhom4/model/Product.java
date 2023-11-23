@@ -2,8 +2,11 @@ package com.example.duan1_nhom4.model;
 
 
 import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.io.Serializable;
+
 @IgnoreExtraProperties
-public class Product {
+public class Product implements Serializable {
     public String ten;
     public String hinh;
 
