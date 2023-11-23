@@ -59,15 +59,15 @@
         android:layout_marginLeft="20dp"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtEmail"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/rounded_edittext_bg"
-            />
+            android:layout_height="60dp"
+            android:background="@drawable/rounded_edittext_bg" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -80,13 +80,13 @@
         android:layout_marginLeft="20dp"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edthotendangky"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:background="@drawable/rounded_edittext_bg"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -101,13 +101,13 @@
         android:layout_marginLeft="20dp"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtpassdangky"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:background="@drawable/rounded_edittext_bg"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -121,13 +121,13 @@
         android:layout_marginLeft="20dp"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtpassreturn"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:background="@drawable/rounded_edittext_bg"
             />
     </com.google.android.material.textfield.TextInputLayout>

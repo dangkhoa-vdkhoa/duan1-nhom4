@@ -60,14 +60,8 @@ public class LoginApp extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseUser currentUser = mAuthLogin.getCurrentUser();
-                if (currentUser != null) {
-                    checklogin(currentUser.getEmail());
-                    dangnhap();
-                } else {
-                        Toast.makeText(LoginApp.this, "Vui lòng điền đầy đủ thông tin đăng nhập", Toast.LENGTH_SHORT).show();
-                    }
-                }
+            dangnhap();
+            }
         });
 
         TextView tvquenmk = findViewById(R.id.tvquenmk);
@@ -92,8 +86,15 @@ public class LoginApp extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent sig = mgg.getSignInIntent();
-                rsactivity_google.launch(sig);
+                String username = edtnameLogin.getText().toString().trim();
+
+                if (username.equals("duan01fpt@gmail.com")) {
+                    Toast.makeText(LoginApp.this, "Đang đăng nhập bằng tài khoản admin", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginApp.this, AdminActivity.class));
+                } else {
+                    Intent sig = mgg.getSignInIntent();
+                    rsactivity_google.launch(sig);
+                }
             }
         });
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
@@ -109,7 +110,7 @@ public class LoginApp extends AppCompatActivity {
                     String email = account.getEmail();
                     String name = account.getDisplayName();
                     Toast.makeText(LoginApp.this, "Đăng nhập thành công "+"\n"+"email: "+ email+"\n"+"name: "+name, Toast.LENGTH_SHORT).show();
-                    checklogin(email);
+                    checkgg(email);
                 } catch (Exception e){
                     Log.e(TAG,"onFailure: ",e);
                 }
@@ -120,43 +121,53 @@ public class LoginApp extends AppCompatActivity {
     });
 
 
-    public  void dangnhap (){
-        String username = edtnameLogin.getText().toString();
-        String password = edtpassLogin.getText().toString();
-        mAuthLogin.signInWithEmailAndPassword(username, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    FirebaseUser user = mAuthLogin.getCurrentUser();
-                    Toast.makeText(LoginApp.this, "Đăng nhập thành công ", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginApp.this, MainActivity.class));
-                }else {
-                    Log.w(TAG,"signInWithEmail:failure",task.getException());
-                    Toast.makeText(LoginApp.this, "Đăng nhập thất bại\n tên tài khoản hoặc mật khẩu sai", Toast.LENGTH_SHORT).show();
-                }
+    public  void dangnhap () {
+         String password = edtpassLogin.getText().toString().trim();
+         String username = edtnameLogin.getText().toString().trim();
 
-            }
-        });
+         if (username.isEmpty() || password.isEmpty()){
+             Toast.makeText(this, "vui lòng điền đầy đủ thông tin đăng nhập", Toast.LENGTH_SHORT).show();
+         }else if (username.equals("duan01fpt@gmail.com")) {
+             Toast.makeText(this, "Đang đăng nhập bằng tài khoản admin", Toast.LENGTH_SHORT).show();
+             startActivity(new Intent(LoginApp.this, AdminActivity.class));
+         } else {
+             mAuthLogin.signInWithEmailAndPassword(username, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                 @Override
+                 public void onComplete(@NonNull Task<AuthResult> task) {
+                     if (task.isSuccessful()) {
+                         FirebaseUser user = mAuthLogin.getCurrentUser();
+                         Toast.makeText(LoginApp.this, "Đăng nhập thành công ", Toast.LENGTH_SHORT).show();
+                         startActivity(new Intent(LoginApp.this, MainActivity.class));
+                     } else {
+                         Toast.makeText(LoginApp.this, "Đăng nhập thất bại\n tên tài khoản hoặc mật khẩu sai", Toast.LENGTH_SHORT).show();
+                     }
+
+                 }
+             });
+         }
+
     }
 
-    private boolean checklogin(String username) {
-        username = edtnameLogin.getText().toString().trim();
-        String password = edtpassLogin.getText().toString().trim();
-        if (username.equals("duan01fpt@gmail.com")) {
-            Toast.makeText(this, "Đang đăng nhập bằng tài khoản admin", Toast.LENGTH_SHORT).show();
+    public void checkgg(String email) {
+        if (email.equals("duan01fpt@gmail.com")) {
             startActivity(new Intent(LoginApp.this, AdminActivity.class));
         } else {
+            uploadToFirebase(email);
             startActivity(new Intent(LoginApp.this, MainActivity.class));
         }
-        return !username.isEmpty() && !password.isEmpty();
+    }
+    private void uploadToFirebase(String email) {
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, "defaultPassword")
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuthLogin.getCurrentUser();
+                        } else {
+                            Toast.makeText(LoginApp.this, "Firebase account creation failed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
-//    private void checkAndRedirect(String email) {
-//        if (email.equals("duan01fpt@gmail.com")) {
-//            Toast.makeText(this, "Đang đăng nhập bằng tài khoản admin", Toast.LENGTH_SHORT).show();
-//            startActivity(new Intent(LoginApp.this, AdminActivity.class));
-//        } else {
-//            startActivity(new Intent(LoginApp.this, MainActivity.class));
-//        }
-//    }
 }
