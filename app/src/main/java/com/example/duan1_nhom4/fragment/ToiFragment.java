@@ -14,7 +14,6 @@ import com.example.duan1_nhom4.Login.LoginApp;
 import com.example.duan1_nhom4.Login.Resetpassword;
 import com.example.duan1_nhom4.Map;
 import com.example.duan1_nhom4.R;
-import com.example.duan1_nhom4.main.AdminActivity;
 import com.example.duan1_nhom4.model.Username;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -86,7 +85,7 @@ public class ToiFragment extends Fragment {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    // Handle the error if needed
+
                 }
             });
         }
@@ -112,7 +111,7 @@ public class ToiFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Chức năng admin", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), AdminActivity.class);
+                Intent intent = new Intent(getContext(), LoginApp.class);
                 startActivity(intent);
             }
         });
