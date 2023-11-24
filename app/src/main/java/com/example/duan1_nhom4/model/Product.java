@@ -13,8 +13,17 @@ public class Product implements Serializable {
     public String gia;
     public String mota;
 
+    public int numberOder;
 
-    public Product(String hinh, String ten,  String gia, String mota) {
+    public Product(String ten, String hinh, String gia, String mota, int numberOder) {
+        this.ten = ten;
+        this.hinh = hinh;
+        this.gia = gia;
+        this.mota = mota;
+        this.numberOder = numberOder;
+    }
+
+    public Product(String hinh, String ten, String gia, String mota) {
         this.hinh = hinh;
         this.ten = ten;
         this.gia = gia;
@@ -60,5 +69,13 @@ public class Product implements Serializable {
 
     public void setMota(String mota) {
         this.mota = mota;
+    }
+
+    public int getNumberOder() {
+        return numberOder;
+    }
+
+    public void setNumberOder(int numberOder) {
+        this.numberOder = numberOder;
     }
 }

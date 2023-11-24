@@ -11,11 +11,13 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.duan1_nhom4.GioHangActivity;
 import com.example.duan1_nhom4.R;
 import com.example.duan1_nhom4.SlideAdapter;
 import com.example.duan1_nhom4.adapter.HomeAdapter;
@@ -34,9 +36,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ThemGHActivity extends AppCompatActivity {
-    TextView tensp,giasp,mota,sosp;
+    TextView tensp,giasp,mota,numberOderTxt;
+    Integer numberOder = 1;
     ImageView hinhsp;
-    Button themsp,xoasp,themvaogh;
+    Button themvaogh;
+
+    ImageView plussp,minussp;
 
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference("products");
     private StorageReference reference = FirebaseStorage.getInstance().getReference();
@@ -48,16 +53,40 @@ public class ThemGHActivity extends AppCompatActivity {
         tensp = findViewById(R.id.product_tensp);
         giasp = findViewById(R.id.product_giasp);
         mota = findViewById(R.id.product_motasp);
-        sosp = findViewById(R.id.product_sosp);
         hinhsp = findViewById(R.id.product_image_view);
-        themsp = findViewById(R.id.product_themsp);
-        xoasp = findViewById(R.id.product_botsp);
+        numberOderTxt = findViewById(R.id.product_sosp);
+        plussp = findViewById(R.id.product_themsp);
+        minussp = findViewById(R.id.product_botsp);
         themvaogh = findViewById(R.id.btnThemGH);
 
         Product product = (Product) getIntent().getSerializableExtra("chitiet");
         tensp.setText(product.ten);
         giasp.setText(product.gia);
         mota.setText(product.mota);
+        numberOderTxt.setText(String.valueOf(numberOder));
         Glide.with(getApplicationContext()).load(product.hinh).into(hinhsp);
+        plussp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numberOder = numberOder + 1;
+                numberOderTxt.setText(String.valueOf(numberOder));
+            }
+        });
+        minussp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (numberOder>1){
+                    numberOder=numberOder - 1;
+                }
+                numberOderTxt.setText(String.valueOf(numberOder));
+            }
+        });
+        themvaogh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ThemGHActivity.this, GioHangActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -69,6 +69,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
         View addGHFood;
         TextView tenFood,tvGiaFood;
 
+
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
