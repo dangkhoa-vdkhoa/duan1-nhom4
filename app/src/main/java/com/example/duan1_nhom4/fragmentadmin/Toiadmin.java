@@ -1,4 +1,4 @@
-package com.example.duan1_nhom4.fragment;
+package com.example.duan1_nhom4.fragmentadmin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +15,6 @@ import com.example.duan1_nhom4.Login.Resetpassword;
 import com.example.duan1_nhom4.Map;
 import com.example.duan1_nhom4.R;
 import com.example.duan1_nhom4.model.Username;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-public class ToiFragment extends Fragment {
+public class Toiadmin extends Fragment {
     View btnToiVocher;
     View btnToiDiaChi;
     View btnToiDMK;
@@ -41,25 +38,17 @@ public class ToiFragment extends Fragment {
 
     private FirebaseAuth mAuth;
 
-    private GoogleSignInClient mGoogleSignInClient;
-
-
-    public ToiFragment() {
-    }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-        mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), GoogleSignInOptions.DEFAULT_SIGN_IN);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_toi, container, false);
+        View view = inflater.inflate(R.layout.fragment_toiadmin, container, false);
         btnToiVocher = view.findViewById(R.id.btnToiVocher);
         btnToiDiaChi = view.findViewById(R.id.btnToiDiaChi);
         btnToiDaThich = view.findViewById(R.id.btnToiDaThich);
@@ -75,7 +64,6 @@ public class ToiFragment extends Fragment {
         if (currentUser != null) {
             String userEmail = currentUser.getEmail();
             tvToiEmail.setText(userEmail);
-
             DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getUid());
             userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -88,10 +76,8 @@ public class ToiFragment extends Fragment {
                         }
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-
                 }
             });
         }
@@ -134,36 +120,14 @@ public class ToiFragment extends Fragment {
                 Toast.makeText(getContext(), "Giỏ hàng", Toast.LENGTH_SHORT).show();
             }
         });
-
-
         btnToiLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signOut();
-
-            }
-        });
-
-
-
-        return view;
-    }
-
-    private void signOut() {
-        // Đăng xuất Firebase
-        mAuth.signOut();
-        // Đăng xuất Google
-        mGoogleSignInClient.signOut().addOnCompleteListener(requireActivity(), task -> {
-            if (task.isSuccessful()) {
-                Toast.makeText(getContext(), "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
-                // Chuyển về màn hình đăng nhập
+                Toast.makeText(getContext(), "Đăng xuất", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(), LoginApp.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                requireActivity().finish();
-            } else {
-                Toast.makeText(getContext(), "Đăng xuất thất bại", Toast.LENGTH_SHORT).show();
             }
         });
+        return view;
     }
 }
