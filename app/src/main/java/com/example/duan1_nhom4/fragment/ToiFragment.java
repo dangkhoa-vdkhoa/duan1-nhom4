@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.duan1_nhom4.GioHangActivity;
 import com.example.duan1_nhom4.Login.LoginApp;
 import com.example.duan1_nhom4.Login.Resetpassword;
 import com.example.duan1_nhom4.Map;
@@ -131,6 +132,8 @@ public class ToiFragment extends Fragment {
         btnToiGioHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getContext(), GioHangActivity.class);
+                startActivity(intent);
                 Toast.makeText(getContext(), "Giỏ hàng", Toast.LENGTH_SHORT).show();
             }
         });

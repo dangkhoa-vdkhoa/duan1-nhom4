@@ -1,16 +1,17 @@
 package com.example.duan1_nhom4.model;
 
 public class Username {
+
     private String hoten;
 
     private String email;
 
+    public Username() {
+    }
+
     public Username(String hoten, String email) {
         this.hoten = hoten;
         this.email = email;
-    }
-
-    public Username() {
     }
 
     public String getHoten() {
@@ -28,4 +29,6 @@ public class Username {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 }
