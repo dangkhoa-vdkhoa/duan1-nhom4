@@ -1,6 +1,9 @@
 package com.example.duan1_nhom4.model;
 
 
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.io.Serializable;
@@ -15,7 +18,7 @@ public class Product implements Serializable {
 
     public int numberOder;
 
-    public Product(String ten, String hinh, String gia, String mota, int numberOder) {
+    public Product(String ten, String gia, String mota, String hinh, int numberOder) {
         this.ten = ten;
         this.hinh = hinh;
         this.gia = gia;

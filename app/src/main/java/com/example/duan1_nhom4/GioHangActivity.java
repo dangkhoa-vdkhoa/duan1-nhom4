@@ -31,14 +31,12 @@ public class GioHangActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gio_hang);
         recyclerView = findViewById(R.id.recyclerViewGioHang);
 
-//        list = new ArrayList<GioHang>();
-////        gioHangAdapter = new GioHangAdapter(GioHangActivity.this , list);
-//        recyclerView.setAdapter(gioHangAdapter);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
         gioHangAdapter = new GioHangAdapter(this , list);
         recyclerView.setAdapter(gioHangAdapter);
+
+
 
         root.addValueEventListener(new ValueEventListener() {
             @Override
