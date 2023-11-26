@@ -27,7 +27,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
     private Context context;
 
     public HomeAdapter(Context context , ArrayList<Product> mList){
-
         this.context = context;
         this.mList = mList;
     }
@@ -66,7 +65,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         CardView layout_item;
         ImageView imageView;
-        View addGHFood;
         TextView tenFood,tvGiaFood;
 
 
@@ -78,7 +76,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
             imageView = itemView.findViewById(R.id.m_imageHome);
             tenFood = itemView.findViewById(R.id.tenFoodHome);
             tvGiaFood = itemView.findViewById(R.id.tvGiaFoodHome);
-            addGHFood = itemView.findViewById(R.id.btnThemGHHome);
 
         }
     }

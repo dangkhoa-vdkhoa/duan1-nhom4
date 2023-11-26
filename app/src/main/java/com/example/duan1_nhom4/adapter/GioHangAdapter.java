@@ -1,30 +1,46 @@
 package com.example.duan1_nhom4.adapter;
 
+import static android.app.PendingIntent.getActivity;
+
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.duan1_nhom4.GioHangActivity;
 import com.example.duan1_nhom4.R;
+import com.example.duan1_nhom4.fragment.DonHangFragment;
 import com.example.duan1_nhom4.model.GioHang;
 import com.example.duan1_nhom4.model.Product;
+import com.example.duan1_nhom4.model.User;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
 public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHolder>{
+    private DatabaseReference addUser = FirebaseDatabase.getInstance().getReference("User");
+    private DatabaseReference addFood = FirebaseDatabase.getInstance().getReference("Food");
 
     private ArrayList<GioHang> mList;
     private Context context;
 
-    public GioHangAdapter(Context context , ArrayList<GioHang> mList){
+    Integer numberOder = 1;
 
+    public GioHangAdapter(Context context , ArrayList<GioHang> mList){
         this.context = context;
         this.mList = mList;
     }
@@ -39,13 +55,99 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull GioHangAdapter.MyViewHolder holder, int position) {
-//        GioHangAdapter.MyViewHolder myViewHolder = (GioHangAdapter.MyViewHolder) holder;
-//        GioHang gioHang = mList.get(position);
         holder.tvTenGH.setText(mList.get(position).getTen());
         holder.tvGiaGH.setText(mList.get(position).getGia());
         holder.tvSoSP.setText(mList.get(position).getSoluong());
         Glide.with(context).load(mList.get(position).getHinh()).into(holder.ivImageGH);
 
+
+        holder.ivMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (numberOder > 1) {
+                    numberOder = numberOder - 1;
+                }
+                holder.tvSoSP.setText(String.valueOf(numberOder));
+            }
+        });
+        holder.ivPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numberOder = numberOder + 1;
+                holder.tvSoSP.setText(String.valueOf(numberOder));
+            }
+        });
+
+        holder.icHuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Cảnh báo");
+                builder.setIcon(R.drawable.ic_warning);
+                builder.setMessage("Bạn có chắc chắn muốn xoá sản phẩm '" +
+                        mList.get(holder.getAdapterPosition()).getTen() + "' không?");
+
+                builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        addFood.child("GioHang").child("ten").removeValue();
+                    }
+                });
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+
+        });
+        holder.btnThanhToan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getRootView().getContext());
+                View v = LayoutInflater.from(view.getRootView().getContext()).inflate(R.layout.dialog_xacnhandonhang, null);
+                AlertDialog dialog = builder.create();
+                EditText edtTenNguoiNhan, edtSoDienThoai, edtDiaChi;
+                Button btnCancel, btnXacNhanDonHang;
+
+                edtTenNguoiNhan = v.findViewById(R.id.edtTenNguoiNhan);
+                edtSoDienThoai = v.findViewById(R.id.edtSoDienThoai);
+                edtDiaChi = v.findViewById(R.id.edtDiaChi);
+                btnCancel = v.findViewById(R.id.btnCancel);
+                btnXacNhanDonHang = v.findViewById(R.id.btnXacNhanThanhToan);
+                btnXacNhanDonHang.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String name = edtTenNguoiNhan.getText().toString().trim();
+                        String sdt = edtSoDienThoai.getText().toString().trim();
+                        String diachi = edtDiaChi.getText().toString().trim();
+
+                        User user = new User(name, sdt, diachi);
+
+                        addUser.push().setValue(user)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(context, "Đặt hàng thành công!!!", Toast.LENGTH_SHORT).show();
+                                        dialog.dismiss();
+                                    }
+                                });
+                    }
+                });
+
+                btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.setView(v);
+                dialog.show();
+            }
+        });
     }
 
     @Override
@@ -54,8 +156,9 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView tvTenGH,tvGiaGH,tvSoSP;
+        TextView tvTenGH,tvGiaGH,tvSoSP,icHuy;
         ImageView ivMinus,ivPlus,ivImageGH;
+        Button btnThanhToan;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,6 +169,8 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
             ivMinus = itemView.findViewById(R.id.minus);
             ivPlus = itemView.findViewById(R.id.plus);
             ivImageGH = itemView.findViewById(R.id.ivImageGH);
+            btnThanhToan = itemView.findViewById(R.id.btnThanhToan);
+            icHuy = itemView.findViewById(R.id.tvHuy);
         }
     }
 }

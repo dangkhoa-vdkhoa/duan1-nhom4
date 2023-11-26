@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.duan1_nhom4.R;
 import com.example.duan1_nhom4.model.Product;
+import com.google.android.material.badge.BadgeUtils;
 
 import java.util.ArrayList;
 
@@ -52,6 +54,8 @@ public class ThemGHAdapter extends RecyclerView.Adapter<ThemGHAdapter.MyViewHold
         View addGHFood;
         TextView tenFood,tvGiaFood;
 
+        Button btnThemGH;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -59,7 +63,6 @@ public class ThemGHAdapter extends RecyclerView.Adapter<ThemGHAdapter.MyViewHold
             tenFood = itemView.findViewById(R.id.tenFoodHome);
             tvGiaFood = itemView.findViewById(R.id.tvGiaFoodHome);
             addGHFood = itemView.findViewById(R.id.btnThemGHHome);
-
         }
     }
 }
