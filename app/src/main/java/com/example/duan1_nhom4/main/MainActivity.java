@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
             }else if (item.getItemId() == R.id.profile){
                 replaceFragment(new ToiFragment());
             }
-
             return true;
         });
 

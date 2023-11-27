@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layouttoiadmin"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.ToiFragment">
+    tools:context=".fragmentadmin.Toiadmin">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,12 +15,12 @@
             android:gravity="center"
             android:layout_marginTop="20dp"
             android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:text="Thông tin tài khoản"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:text="Thông tin tài khoản"/>
 
             <ImageView
                 android:id="@+id/tvToiProfile"
@@ -116,7 +115,7 @@
 
         <LinearLayout
             android:layout_marginTop="15dp"
-            android:id="@+id/btnToiDaThich"
+            android:id="@+id/btnThongBao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -133,7 +132,7 @@
                 android:textSize="20dp"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/black"
-                android:text="Chức năng admin"/>
+                android:text="Thông Báo Người Dùng "/>
         </LinearLayout>
 
         <LinearLayout
@@ -142,7 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@+id/btnToiDaThich">
+            android:layout_below="@+id/btnThongBao">
             <ImageView
                 android:layout_marginLeft="20dp"
                 android:layout_width="50dp"

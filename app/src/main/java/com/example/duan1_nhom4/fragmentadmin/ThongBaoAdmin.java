@@ -1,9 +1,11 @@
-package com.example.duan1_nhom4.fragment;
+package com.example.duan1_nhom4.fragmentadmin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -24,16 +26,21 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class ThongBaoFragment extends Fragment {
+public class ThongBaoAdmin extends Fragment {
 
-    RecyclerView recyclerViewThongBao;
+    public ThongBaoAdmin() {
+
+    }
+
+    RecyclerView recyclerViewThongBaoAdmin;
     private ThongBaoAdapter thongBaoAdapter;
     ArrayList<Thongbao> Glist;
 
-    public ThongBaoFragment() {
-    }
+    Button btnUploadNotiAdmin;
 
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference("ThongBao");
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,30 +51,30 @@ public class ThongBaoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_thong_bao, container, false);
+        View view = inflater.inflate(R.layout.fragment_thong_bao_admin, container, false);
 
-        recyclerViewThongBao = view.findViewById(R.id.recyclerViewThongbao);
-        recyclerViewThongBao.setHasFixedSize(true);
+        recyclerViewThongBaoAdmin = view.findViewById(R.id.recyclerViewThongbaoAdmin);
+        recyclerViewThongBaoAdmin.setHasFixedSize(true);
 
-        recyclerViewThongBao.setLayoutManager(new GridLayoutManager(requireContext(), 1));
+        recyclerViewThongBaoAdmin.setLayoutManager(new GridLayoutManager(requireContext(), 1));
         Glist = new ArrayList<>();
         thongBaoAdapter = new ThongBaoAdapter(Glist, getContext());
-        recyclerViewThongBao.setAdapter(thongBaoAdapter);
+        recyclerViewThongBaoAdmin.setAdapter(thongBaoAdapter);
 
         root = FirebaseDatabase.getInstance().getReference("ThongBao");
 
-//        recyclerViewThongBao.setLayoutManager(new LinearLayoutManager(getContext()));
+//        recyclerViewThongBaoAdmin.setLayoutManager(new LinearLayoutManager(getContext()));
 //        Glist = new ArrayList<>();
 //
-//        recyclerViewThongBao.setAdapter(thongBaoAdapter);
+//        recyclerViewThongBaoAdmin.setAdapter(thongBaoAdapter);
 //
 //        root = FirebaseDatabase.getInstance().getReference("ThongBao");
-//        recyclerViewThongBao.setHasFixedSize(true);
-//        recyclerViewThongBao.setLayoutManager(new GridLayoutManager(requireContext(),2));
+//        recyclerViewThongBaoAdmin.setHasFixedSize(true);
+//        recyclerViewThongBaoAdmin.setLayoutManager(new GridLayoutManager(requireContext(),2));
 //
 //        Glist = new ArrayList<Thongbao>();
 //        thongBaoAdapter = new ThongBaoAdapter(Glist, getContext());
-//        recyclerViewThongBao.setAdapter(thongBaoAdapter);
+//        recyclerViewThongBaoAdmin.setAdapter(thongBaoAdapter);
 
         root.addValueEventListener(new ValueEventListener() {
             @Override
@@ -85,8 +92,13 @@ public class ThongBaoFragment extends Fragment {
 
             }
         });
-
-
+        btnUploadNotiAdmin = view.findViewById(R.id.btnUploadNotiAdmin);
+        btnUploadNotiAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),AddThongBao.class));
+            }
+        });
         return view;
     }
     private void replaceFragmenthome(Fragment fragment){
