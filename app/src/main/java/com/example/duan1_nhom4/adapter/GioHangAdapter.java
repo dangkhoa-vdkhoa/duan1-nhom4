@@ -4,7 +4,6 @@ import static android.app.PendingIntent.getActivity;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +18,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.duan1_nhom4.GioHangActivity;
 import com.example.duan1_nhom4.R;
-import com.example.duan1_nhom4.fragment.DonHangFragment;
+import com.example.duan1_nhom4.model.DonHangDaDat;
 import com.example.duan1_nhom4.model.GioHang;
-import com.example.duan1_nhom4.model.Product;
 import com.example.duan1_nhom4.model.User;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -33,10 +30,12 @@ import java.util.ArrayList;
 
 public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHolder>{
     private DatabaseReference addUser = FirebaseDatabase.getInstance().getReference("User");
-    private DatabaseReference addFood = FirebaseDatabase.getInstance().getReference("Food");
+    private DatabaseReference addFood = FirebaseDatabase.getInstance().getReference("GioHangDaDat");
+    private DatabaseReference GhOder = FirebaseDatabase.getInstance().getReference("GioHang");
 
-    private ArrayList<GioHang> mList;
     private Context context;
+    private ArrayList<GioHang> mList;
+
 
     Integer numberOder = 1;
 
@@ -54,12 +53,13 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GioHangAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull GioHangAdapter.MyViewHolder holder,final int position) {
+        GioHang gioHang = mList.get(position);
         holder.tvTenGH.setText(mList.get(position).getTen());
         holder.tvGiaGH.setText(mList.get(position).getGia());
         holder.tvSoSP.setText(mList.get(position).getSoluong());
         Glide.with(context).load(mList.get(position).getHinh()).into(holder.ivImageGH);
-
+        String id = GhOder.push().getKey();
 
         holder.ivMinus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +81,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
         holder.icHuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Cảnh báo");
                 builder.setIcon(R.drawable.ic_warning);
@@ -90,13 +91,15 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                 builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        addFood.child("GioHang").child("ten").removeValue();
+                        GhOder.child(id).removeValue();
+                        Toast.makeText(context, id, Toast.LENGTH_SHORT).show();
+
                     }
                 });
                 builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        dialog.dismiss();
                     }
                 });
                 AlertDialog alertDialog = builder.create();
@@ -124,8 +127,12 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                         String name = edtTenNguoiNhan.getText().toString().trim();
                         String sdt = edtSoDienThoai.getText().toString().trim();
                         String diachi = edtDiaChi.getText().toString().trim();
+                        String ten = holder.tvTenGH.getText().toString().trim();
+                        String gia = holder.tvGiaGH.getText().toString().trim();
+                        String sosp = numberOder.toString().trim();
+                        String img = gioHang.hinh;
 
-                        User user = new User(name, sdt, diachi);
+                        User user = new User(name, sdt, diachi,ten,gia,sosp,img);
 
                         addUser.push().setValue(user)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {

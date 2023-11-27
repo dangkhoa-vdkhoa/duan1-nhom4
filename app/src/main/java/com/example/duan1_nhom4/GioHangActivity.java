@@ -36,8 +36,6 @@ public class GioHangActivity extends AppCompatActivity {
         gioHangAdapter = new GioHangAdapter(this , list);
         recyclerView.setAdapter(gioHangAdapter);
 
-
-
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

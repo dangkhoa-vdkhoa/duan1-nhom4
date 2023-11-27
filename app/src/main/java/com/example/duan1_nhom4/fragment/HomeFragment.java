@@ -48,8 +48,6 @@ public class HomeFragment extends Fragment {
     ArrayList<Product> list;
 
     ImageView ivProfile;
-
-
     FirebaseUser currentUser;
 
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference("products");
@@ -58,8 +56,6 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 

@@ -2,21 +2,21 @@ package com.example.duan1_nhom4.model;
 
 import java.io.Serializable;
 
-public class GioHang implements Serializable {
+public class DonHangDaDat implements Serializable {
     public String ten;
     public String hinh;
 
     public String gia;
     public String soluong;
 
-    public GioHang() {
-    }
-
-    public GioHang(String hinh, String ten, String gia, String soluong) {
+    public DonHangDaDat(String ten, String hinh, String gia, String soluong) {
         this.ten = ten;
         this.hinh = hinh;
         this.gia = gia;
         this.soluong = soluong;
+    }
+
+    public DonHangDaDat() {
     }
 
     public String getTen() {
