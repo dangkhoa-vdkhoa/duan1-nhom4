@@ -68,15 +68,6 @@ public class AddThongBao extends AppCompatActivity implements DatePickerDialog.O
             @Override
             public void onClick(View v) {
                 uploadToFirebase();
-            }
-        });
-
-
-        tvDateThongBaoadd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShowDatePickerDialog();
-
                 Bitmap logo = BitmapFactory.decodeResource(getResources(), R.mipmap.logo);
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(AddThongBao.this, confignotification.CHANNEL_ID)
                         //icon sẽ hiện trên soud
@@ -99,6 +90,14 @@ public class AddThongBao extends AppCompatActivity implements DatePickerDialog.O
                     //nếu k có quyền tthì sẽ xin
                     ActivityCompat.requestPermissions(AddThongBao.this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 7979);
                 }
+
+            }
+        });
+
+        tvDateThongBaoadd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowDatePickerDialog();
             }
         });
 

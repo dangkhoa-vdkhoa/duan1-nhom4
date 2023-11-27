@@ -1,7 +1,5 @@
 package com.example.duan1_nhom4.adapter;
 
-import static android.app.PendingIntent.getActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
@@ -19,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.duan1_nhom4.R;
-import com.example.duan1_nhom4.model.DonHangDaDat;
 import com.example.duan1_nhom4.model.GioHang;
 import com.example.duan1_nhom4.model.User;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -120,6 +117,9 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                 btnXacNhanDonHang.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
+
+
                         String name = edtTenNguoiNhan.getText().toString().trim();
                         String sdt = edtSoDienThoai.getText().toString().trim();
                         String diachi = edtDiaChi.getText().toString().trim();

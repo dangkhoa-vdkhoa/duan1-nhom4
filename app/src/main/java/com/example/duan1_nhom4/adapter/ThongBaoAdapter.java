@@ -35,27 +35,10 @@ public class ThongBaoAdapter extends RecyclerView.Adapter<ThongBaoAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ThongBaoAdapter.ViewHolder holder, int position) {
         ViewHolder myViewHolder = (ViewHolder) holder;
-//        Thongbao thongbao = GList.get(position);
         myViewHolder.TenThongBao.setText(GList.get(position).getTenthongbao());
         myViewHolder.NoiDungThongBao.setText(GList.get(position).getNoidung());
         myViewHolder.DateThongBao.setText(GList.get(position).getDatethongbao());
         myViewHolder.AvtThongBao.setText(GList.get(position).getHinh());
-
-//        String hinh = GList.get(position).getHinh();
-//
-//
-//        if (hinh == null || hinh.isEmpty()) {
-//            // Đặt hình mặc định nếu không có hình từ Firebase
-//            myViewHolder.AvtThongBao.setText("logo");
-//            // Hoặc có thể đặt hình mặc định từ resources sử dụng setImageResource hoặc Glide/Picasso
-//            // Ví dụ: myViewHolder.AvtThongBao.setImageResource(R.drawable.default_image);
-//            // Hoặc sử dụng Glide/Picasso để tải hình từ URL mặc định
-//            // Glide.with(context).load(defaultImageUrl).into(myViewHolder.AvtThongBao);
-//        } else {
-//
-//            myViewHolder.AvtThongBao.setText(hinh);
-//
-//        }
 
     }
 

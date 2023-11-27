@@ -70,27 +70,6 @@
                 android:text="Vocher của bạn"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_marginTop="15dp"
-            android:id="@+id/btnToiDiaChi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@+id/btnToiVocher">
-            <ImageView
-                android:layout_marginLeft="20dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/location"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="20dp"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                android:text="Địa chỉ"/>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_marginTop="15dp"
@@ -98,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@+id/btnToiDiaChi">
+            android:layout_below="@+id/btnToiVocher">
             <ImageView
                 android:layout_marginLeft="20dp"
                 android:layout_width="50dp"
@@ -116,7 +95,7 @@
 
         <LinearLayout
             android:layout_marginTop="15dp"
-            android:id="@+id/btnToiDaThich"
+            android:id="@+id/btnThongTin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -133,7 +112,7 @@
                 android:textSize="20dp"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/black"
-                android:text="Chức năng admin"/>
+                android:text="Thông tin người dùng"/>
         </LinearLayout>
 
         <LinearLayout
@@ -142,7 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@+id/btnToiDaThich">
+            android:layout_below="@+id/btnThongTin">
             <ImageView
                 android:layout_marginLeft="20dp"
                 android:layout_width="50dp"

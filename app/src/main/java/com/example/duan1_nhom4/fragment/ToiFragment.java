@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.example.duan1_nhom4.GioHangActivity;
 import com.example.duan1_nhom4.Login.LoginApp;
 import com.example.duan1_nhom4.Login.Resetpassword;
-import com.example.duan1_nhom4.Map;
+import com.example.duan1_nhom4.Login.ThongTin;
 import com.example.duan1_nhom4.R;
 import com.example.duan1_nhom4.model.Username;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -31,9 +31,8 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class ToiFragment extends Fragment {
     View btnToiVocher;
-    View btnToiDiaChi;
     View btnToiDMK;
-    View btnToiDaThich;
+    View btnThongTin;
     View btnToiGioHang;
     View btnToiLogOut;
 
@@ -62,8 +61,7 @@ public class ToiFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_toi, container, false);
         btnToiVocher = view.findViewById(R.id.btnToiVocher);
-        btnToiDiaChi = view.findViewById(R.id.btnToiDiaChi);
-        btnToiDaThich = view.findViewById(R.id.btnToiDaThich);
+        btnThongTin = view.findViewById(R.id.btnThongTin);
         btnToiDMK = view.findViewById(R.id.btnToiDMK);
         btnToiGioHang = view.findViewById(R.id.btnToiGioHang);
         btnToiLogOut = view.findViewById(R.id.btnToiLogOut);
@@ -105,20 +103,10 @@ public class ToiFragment extends Fragment {
                 Toast.makeText(getContext(), "Vocher của bạn", Toast.LENGTH_SHORT).show();
             }
         });
-
-        btnToiDiaChi.setOnClickListener(new View.OnClickListener() {
+        btnThongTin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(requireContext(), Map.class);
-                startActivity(intent);
-                Toast.makeText(getContext(), "Địa chỉ", Toast.LENGTH_SHORT).show();
-            }
-        });
-        btnToiDaThich.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "Chức năng admin", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), LoginApp.class);
+                Intent intent = new Intent(getContext(), ThongTin.class);
                 startActivity(intent);
             }
         });
