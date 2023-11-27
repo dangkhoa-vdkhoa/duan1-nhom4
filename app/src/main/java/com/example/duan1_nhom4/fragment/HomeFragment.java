@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -44,9 +45,8 @@ public class HomeFragment extends Fragment {
     private HomeAdapter myAdapter;
     ViewPager2 viewPager2;
     RecyclerView recyclerView;
-    DatabaseReference database;
     ArrayList<Product> list;
-
+    SearchView searchView;
     ImageView ivProfile;
     FirebaseUser currentUser;
 
@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
+        searchView = view.findViewById(R.id.searchView);
         ivProfile = view.findViewById(R.id.ivProfile);
 
         viewPager2 = view.findViewById(R.id.viewPager);
@@ -85,22 +85,25 @@ public class HomeFragment extends Fragment {
         myAdapter = new HomeAdapter(getContext() , list);
         recyclerView.setAdapter(myAdapter);
 
+
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Product model = dataSnapshot.getValue(Product.class);
-                    list.add(model);
-                }
+                list.clear(); // Clear the previous list items
+
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Product model = dataSnapshot.getValue(Product.class);
+                        list.add(model);
+                    }
+
                 myAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Handle onCancelled
             }
         });
-
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
         ivProfile.setOnClickListener(new View.OnClickListener() {
@@ -115,10 +118,59 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                timkiemSP(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                timkiemSP(s);
+                return false;
+            }
+        });
+
 
         return view;
     }
 
+    private void timkiemSP(String searchText) {
+        root.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear(); // Clear the previous list items
+
+                if (searchText.isEmpty()) {
+                    // If the search text is empty, display all products
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Product model = dataSnapshot.getValue(Product.class);
+                        list.add(model);
+                    }
+                } else if (searchText==null) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Product model = dataSnapshot.getValue(Product.class);
+                        list.add(model);
+                    }
+                } else {
+                    // If there is search text, display matching products
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Product model = dataSnapshot.getValue(Product.class);
+                        if (model.getTen().toLowerCase().contains(searchText.toLowerCase())) {
+                            list.add(model);
+                        }
+                    }
+                }
+                myAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle onCancelled
+            }
+        });
+    }
 
     private void replaceFragmenthome(Fragment fragment){
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
