@@ -54,13 +54,11 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull GioHangAdapter.MyViewHolder holder,final int position) {
-        GioHang gioHang = mList.get(position);
         holder.tvTenGH.setText(mList.get(position).getTen());
         holder.tvGiaGH.setText(mList.get(position).getGia());
         holder.tvSoSP.setText(mList.get(position).getSoluong());
         Glide.with(context).load(mList.get(position).getHinh()).into(holder.ivImageGH);
-        String id = GhOder.push().getKey();
-
+        GioHang gioHang = mList.get(position);
         holder.ivMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,15 +83,15 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Cảnh báo");
                 builder.setIcon(R.drawable.ic_warning);
-                builder.setMessage("Bạn có chắc chắn muốn xoá sản phẩm '" +
+                builder.setMessage("Bạn có chắc chắn muốn xoá khỏi giỏ hàng '" +
                         mList.get(holder.getAdapterPosition()).getTen() + "' không?");
 
                 builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        String id = gioHang.getId();
                         GhOder.child(id).removeValue();
-                        Toast.makeText(context, id, Toast.LENGTH_SHORT).show();
-
+                        mList.clear();
                     }
                 });
                 builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {

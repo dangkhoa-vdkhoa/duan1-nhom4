@@ -62,7 +62,7 @@ public class ThemGHActivity extends AppCompatActivity {
     ImageView plussp,minussp;
 
     private DatabaseReference addFood = FirebaseDatabase.getInstance().getReference("GioHang");
-
+    String ghID = addFood.push().getKey();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,10 +114,10 @@ public class ThemGHActivity extends AppCompatActivity {
                 }
 
                 // Tạo đối tượng GioHang
-                GioHang gioHang = new GioHang(imageUrl, ten, gia, soluong);
+                GioHang gioHang = new GioHang(imageUrl, ten, gia, soluong,ghID,0);
 
                 // Thực hiện thêm đối tượng GioHang vào Firebase Database
-                addFood.push().setValue(gioHang)
+                addFood.child(ghID).setValue(gioHang)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {

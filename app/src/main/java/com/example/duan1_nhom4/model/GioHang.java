@@ -8,8 +8,19 @@ public class GioHang implements Serializable {
 
     public String gia;
     public String soluong;
+    public String id;
+    public int trangThai;
 
     public GioHang() {
+    }
+
+    public GioHang(String hinh,String ten, String gia, String soluong, String id, int trangThai) {
+        this.ten = ten;
+        this.hinh = hinh;
+        this.gia = gia;
+        this.soluong = soluong;
+        this.id = id;
+        this.trangThai = trangThai;
     }
 
     public GioHang(String hinh, String ten, String gia, String soluong) {
@@ -49,5 +60,21 @@ public class GioHang implements Serializable {
 
     public void setSoluong(String soluong) {
         this.soluong = soluong;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
     }
 }
