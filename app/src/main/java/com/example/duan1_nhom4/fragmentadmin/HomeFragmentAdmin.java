@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,10 +48,10 @@ public class HomeFragmentAdmin extends Fragment {
 
     Button btnInsertImage;
     ViewPager2 viewPager2;
+    SearchView searchView;
     RecyclerView recyclerView;
     DatabaseReference database;
     ArrayList<Product> list;
-    EditText edtURL;
     TextInputEditText edTenFood;
 
     ImageView icAddFood,imgAdd;
@@ -73,7 +74,7 @@ public class HomeFragmentAdmin extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home_admin, container, false);
-
+        searchView = view.findViewById(R.id.searchViewAdmin);
 
         viewPager2 = view.findViewById(R.id.viewPagerAdmin);
 
@@ -126,8 +127,54 @@ public class HomeFragmentAdmin extends Fragment {
             }
         });
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                timkiemSP(s);
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String s) {
+                timkiemSP(s);
+                return false;
+            }
+        });
         return view;
     }
+    private void timkiemSP(String searchText) {
+        root.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear(); // Clear the previous list items
 
+                if (searchText.isEmpty()) {
+                    // If the search text is empty, display all products
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Product model = dataSnapshot.getValue(Product.class);
+                        list.add(model);
+                    }
+                } else if (searchText==null) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Product model = dataSnapshot.getValue(Product.class);
+                        list.add(model);
+                    }
+                } else {
+                    // If there is search text, display matching products
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Product model = dataSnapshot.getValue(Product.class);
+                        if (model.getTen().toLowerCase().contains(searchText.toLowerCase())) {
+                            list.add(model);
+                        }
+                    }
+                }
+                myAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle onCancelled
+            }
+        });
+    }
 }
