@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.duan1_nhom4.R;
 import com.example.duan1_nhom4.fragment.DonHangFragment;
 import com.example.duan1_nhom4.fragment.HomeFragment;
+import com.example.duan1_nhom4.fragmentadmin.DonHangAdminFragment;
 import com.example.duan1_nhom4.fragmentadmin.HomeFragmentAdmin;
 import com.example.duan1_nhom4.fragmentadmin.ThongBaoAdmin;
 import com.example.duan1_nhom4.fragmentadmin.Toiadmin;
@@ -30,7 +31,7 @@ public class AdminActivity extends AppCompatActivity {
             if (item.getItemId() == R.id.home) {
                 replaceFragment(new HomeFragment());
             }else if (item.getItemId() == R.id.order){
-                replaceFragment(new DonHangFragment());
+                replaceFragment(new DonHangAdminFragment());
             }else if (item.getItemId() == R.id.profile){
                 replaceFragment(new Toiadmin());
             } else if (item.getItemId() == R.id.notifi) {

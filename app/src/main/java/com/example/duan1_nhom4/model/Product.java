@@ -18,6 +18,8 @@ public class Product implements Serializable {
     public String mota;
 
     public int numberOder;
+    public int trangThai;
+
     public String id;
 
     public Product(String hinh, String ten, String gia, String mota, String id) {

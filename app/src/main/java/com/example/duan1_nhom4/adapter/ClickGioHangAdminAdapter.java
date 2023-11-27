@@ -16,11 +16,11 @@ import com.example.duan1_nhom4.model.User;
 
 import java.util.ArrayList;
 
-public class ClickGioHangAdapter extends RecyclerView.Adapter<ClickGioHangAdapter.MyViewHolder> {
+public class ClickGioHangAdminAdapter extends RecyclerView.Adapter<ClickGioHangAdminAdapter.MyViewHolder> {
     private Context context;
     private ArrayList<User> mList;
 
-    public ClickGioHangAdapter(Context context, ArrayList<User> mList) {
+    public ClickGioHangAdminAdapter(Context context, ArrayList<User> mList) {
         this.context = context;
         this.mList = mList;
     }
@@ -28,12 +28,12 @@ public class ClickGioHangAdapter extends RecyclerView.Adapter<ClickGioHangAdapte
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_click_gio_hang, parent ,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_click_gio_hang_admin, parent ,false);
         return new MyViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ClickGioHangAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ClickGioHangAdminAdapter.MyViewHolder holder, int position) {
         holder.tensp.setText(mList.get(position).getTen());
         holder.tien.setText(mList.get(position).getGia());
         holder.sosp.setText(mList.get(position).getSosp());

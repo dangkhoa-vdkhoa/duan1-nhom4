@@ -35,8 +35,6 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
 
     private Context context;
     private ArrayList<GioHang> mList;
-
-
     Integer numberOder = 1;
 
     public GioHangAdapter(Context context , ArrayList<GioHang> mList){
@@ -127,7 +125,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                         String diachi = edtDiaChi.getText().toString().trim();
                         String ten = holder.tvTenGH.getText().toString().trim();
                         String gia = holder.tvGiaGH.getText().toString().trim();
-                        String sosp = numberOder.toString().trim();
+                        String sosp = holder.tvSoSP.getText().toString().trim();
                         String img = gioHang.hinh;
 
                         User user = new User(name, sdt, diachi,ten,gia,sosp,img);
@@ -140,6 +138,10 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                                         dialog.dismiss();
                                     }
                                 });
+
+                        String id = gioHang.getId();
+                        GhOder.child(id).removeValue();
+                        mList.clear();
                     }
                 });
 
