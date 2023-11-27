@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.duan1_nhom4.GioHangActivity;
 import com.example.duan1_nhom4.Login.LoginApp;
 import com.example.duan1_nhom4.Login.Resetpassword;
 import com.example.duan1_nhom4.Map;
@@ -29,7 +30,7 @@ public class Toiadmin extends Fragment {
     View btnToiVocher;
     View btnToiDiaChi;
     View btnToiDMK;
-    View btnToiDaThich;
+    View btnThongBao;
     View btnToiGioHang;
     View btnToiLogOut;
 
@@ -51,7 +52,7 @@ public class Toiadmin extends Fragment {
         View view = inflater.inflate(R.layout.fragment_toiadmin, container, false);
         btnToiVocher = view.findViewById(R.id.btnToiVocher);
         btnToiDiaChi = view.findViewById(R.id.btnToiDiaChi);
-        btnToiDaThich = view.findViewById(R.id.btnToiDaThich);
+        btnThongBao = view.findViewById(R.id.btnThongBao);
         btnToiDMK = view.findViewById(R.id.btnToiDMK);
         btnToiGioHang = view.findViewById(R.id.btnToiGioHang);
         btnToiLogOut = view.findViewById(R.id.btnToiLogOut);
@@ -99,13 +100,17 @@ public class Toiadmin extends Fragment {
                 Toast.makeText(getContext(), "Địa chỉ", Toast.LENGTH_SHORT).show();
             }
         });
-        btnToiDaThich.setOnClickListener(new View.OnClickListener() {
+        btnThongBao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Chức năng admin", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), LoginApp.class);
-                startActivity(intent);
+//
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.layouttoiadmin, new ThongBaoAdmin())
+//                        .addToBackStack(null)
+//                        .commit();
             }
+
+
         });
         btnToiDMK.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,7 +122,9 @@ public class Toiadmin extends Fragment {
         btnToiGioHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Giỏ hàng", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), GioHangActivity.class);
+                startActivity(intent);
+//                Toast.makeText(getContext(), "Giỏ hàng", Toast.LENGTH_SHORT).show();
             }
         });
         btnToiLogOut.setOnClickListener(new View.OnClickListener() {

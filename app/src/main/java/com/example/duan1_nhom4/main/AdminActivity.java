@@ -11,6 +11,7 @@ import com.example.duan1_nhom4.R;
 import com.example.duan1_nhom4.fragment.DonHangFragment;
 import com.example.duan1_nhom4.fragment.HomeFragment;
 import com.example.duan1_nhom4.fragmentadmin.HomeFragmentAdmin;
+import com.example.duan1_nhom4.fragmentadmin.ThongBaoAdmin;
 import com.example.duan1_nhom4.fragmentadmin.Toiadmin;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -32,6 +33,8 @@ public class AdminActivity extends AppCompatActivity {
                 replaceFragment(new DonHangFragment());
             }else if (item.getItemId() == R.id.profile){
                 replaceFragment(new Toiadmin());
+            } else if (item.getItemId() == R.id.notifi) {
+                replaceFragment(new ThongBaoAdmin()) ;
             }
 
             return true;

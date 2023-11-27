@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,7 +16,6 @@ import com.bumptech.glide.Glide;
 import com.example.duan1_nhom4.R;
 import com.example.duan1_nhom4.main.ThemGHActivity;
 import com.example.duan1_nhom4.model.Product;
-
 
 import java.util.ArrayList;
 
@@ -71,7 +69,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             layout_item = itemView.findViewById(R.id.layout_item);
             imageView = itemView.findViewById(R.id.m_imageHome);
             tenFood = itemView.findViewById(R.id.tenFoodHome);

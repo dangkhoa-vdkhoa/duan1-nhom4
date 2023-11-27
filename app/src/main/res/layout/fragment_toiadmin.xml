@@ -115,7 +115,7 @@
 
         <LinearLayout
             android:layout_marginTop="15dp"
-            android:id="@+id/btnToiDaThich"
+            android:id="@+id/btnThongBao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -132,7 +132,7 @@
                 android:textSize="20dp"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/black"
-                android:text="Chức năng admin"/>
+                android:text="Thông Báo Người Dùng "/>
         </LinearLayout>
 
         <LinearLayout
@@ -141,7 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@+id/btnToiDaThich">
+            android:layout_below="@+id/btnThongBao">
             <ImageView
                 android:layout_marginLeft="20dp"
                 android:layout_width="50dp"
