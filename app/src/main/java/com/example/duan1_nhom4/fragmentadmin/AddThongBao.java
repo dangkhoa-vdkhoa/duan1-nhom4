@@ -1,7 +1,13 @@
 package com.example.duan1_nhom4.fragmentadmin;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,8 +18,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.example.duan1_nhom4.R;
+import com.example.duan1_nhom4.adapter.confignotification;
 import com.example.duan1_nhom4.model.Thongbao;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,6 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class AddThongBao extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -65,6 +76,29 @@ public class AddThongBao extends AppCompatActivity implements DatePickerDialog.O
             @Override
             public void onClick(View v) {
                 ShowDatePickerDialog();
+
+                Bitmap logo = BitmapFactory.decodeResource(getResources(), R.mipmap.logo);
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(AddThongBao.this, confignotification.CHANNEL_ID)
+                        //icon sẽ hiện trên soud
+                        .setSmallIcon(R.mipmap.logo)
+                        //tiêu đề của notifi
+                        .setContentTitle("Bạn có 1 thông báo mới ")
+                        //nội dung của notifi
+//                        .setContentText("đây là nội dung bạn nên xem 'bấm vào'")
+                        //truyền đạt hình ảnh vào noti
+                        .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(logo).bigLargeIcon(null))
+                        //hiện thị icon bên phải khi noti ở dạng thu gọn
+                        .setLargeIcon(logo).setColor(Color.RED).setAutoCancel(true);
+                NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(AddThongBao.this);
+                // code kiểm tra quyền notifi
+                if (ActivityCompat.checkSelfPermission(AddThongBao.this, Manifest.permission.POST_NOTIFICATIONS) ==
+                        PackageManager.PERMISSION_GRANTED) {
+                    // nếu đa có quyền ta thực hiện push noti
+                    notificationManagerCompat.notify((int) new Date().getTime(), builder.build());
+                } else {
+                    //nếu k có quyền tthì sẽ xin
+                    ActivityCompat.requestPermissions(AddThongBao.this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 7979);
+                }
             }
         });
 
@@ -112,9 +146,6 @@ public class AddThongBao extends AppCompatActivity implements DatePickerDialog.O
                                 if (task.isSuccessful()) {
                                     Toast.makeText(AddThongBao.this, "Đăng thông báo thành công", Toast.LENGTH_SHORT).show();
                                     onBackPressed();
-//                                    Intent intent = new Intent(AddThongBao.this, ThongBaoAdmin.class);
-//                                    startActivity(intent);
-//                                    finish();
                                 } else {
                                     Toast.makeText(AddThongBao.this, "Đăng thông báo thất bại", Toast.LENGTH_SHORT).show();
                                 }
@@ -122,5 +153,25 @@ public class AddThongBao extends AppCompatActivity implements DatePickerDialog.O
                         });
             }
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 7979){
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+                    sendNotification();
+                }
+            }
+        }
+    }
+
+    private void sendNotification() {
+
+    }
+
+    private void sendFCMNotificationToAllUsers(String title, String message) {
+
     }
 }
