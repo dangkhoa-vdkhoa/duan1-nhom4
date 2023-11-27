@@ -13,10 +13,21 @@ public class Product implements Serializable {
     public String ten;
     public String hinh;
 
+
     public String gia;
     public String mota;
 
     public int numberOder;
+    public String id;
+
+    public Product(String hinh, String ten, String gia, String mota, String id) {
+        this.ten = ten;
+        this.hinh = hinh;
+        this.gia = gia;
+        this.mota = mota;
+        this.numberOder = numberOder;
+        this.id = id;
+    }
 
     public Product(String ten, String gia, String mota, String hinh, int numberOder) {
         this.ten = ten;
