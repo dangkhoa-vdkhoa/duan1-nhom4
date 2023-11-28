@@ -79,7 +79,7 @@ public class AddThongBao extends AppCompatActivity implements DatePickerDialog.O
                         //truyền đạt hình ảnh vào noti
                         .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(logo).bigLargeIcon(null))
                         //hiện thị icon bên phải khi noti ở dạng thu gọn
-                        .setLargeIcon(logo).setColor(Color.RED).setAutoCancel(true);
+                        .setLargeIcon(logo).setColor(Color.GREEN).setAutoCancel(true);
                 NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(AddThongBao.this);
                 // code kiểm tra quyền notifi
                 if (ActivityCompat.checkSelfPermission(AddThongBao.this, Manifest.permission.POST_NOTIFICATIONS) ==

@@ -57,7 +57,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             imageView = itemView.findViewById(R.id.m_image);
             tenFood = itemView.findViewById(R.id.tenFood);
             tvGiaFood = itemView.findViewById(R.id.tvGiaFood);
-
         }
     }
 }

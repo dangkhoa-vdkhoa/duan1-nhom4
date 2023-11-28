@@ -1,46 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:id="@+id/layout_item"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp">
+    app:cardCornerRadius="10dp"
+    android:layout_margin="5dp">
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:id="@+id/m_image"
+        <ImageView
+            android:layout_width="280dp"
+            android:layout_height="175dp"
+            android:id="@+id/m_image"
 
-        android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"/>
         <TextView
-            android:textSize="15dp"
-            android:layout_gravity="center"
+            android:textSize="18dp"
+            android:layout_gravity="left"
             android:id="@+id/tenFood"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="abc"/>
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content">
+            android:layout_gravity="left"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp">
             <TextView
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:id="@+id/tvGiaFood"
-                android:text="abc"
-                android:textColor="#FF0000"/>
+                android:textStyle="bold"
+                android:textColor="#000000"/>
             <TextView
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text=" VNĐ"
-                android:textColor="#FF0000"/>
+                android:textColor="#000000"/>
         </LinearLayout>
 
     </LinearLayout>

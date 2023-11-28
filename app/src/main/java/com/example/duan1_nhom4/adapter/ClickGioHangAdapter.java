@@ -1,6 +1,7 @@
 package com.example.duan1_nhom4.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,14 +39,13 @@ public class ClickGioHangAdapter extends RecyclerView.Adapter<ClickGioHangAdapte
         holder.tien.setText(mList.get(position).getGia());
         holder.sosp.setText(mList.get(position).getSosp());
         Glide.with(context).load(mList.get(position).getImg()).into(holder.img);
-        String trangthai ="";
         if (mList.get(position).getTrangThai() == 1){
-            trangthai = "Đã Xác Nhận";
+            holder.xn.setText("Đã Xác Nhận");
+            holder.xn.setTextColor(Color.GREEN);
         }else {
-            trangthai = "Chưa Xác Nhận";
+            holder.xn.setText("Chưa Xác Nhận");
+            holder.xn.setTextColor(Color.RED);
         }
-        holder.xn.setText(trangthai);
-
         int tt = Integer.parseInt((mList.get(position).getGia()))*Integer.parseInt(mList.get(position).getSosp());
 
         holder.tongtien.setText(String.valueOf(tt));

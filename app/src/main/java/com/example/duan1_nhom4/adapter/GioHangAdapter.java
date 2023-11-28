@@ -27,13 +27,14 @@ import java.util.ArrayList;
 
 public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHolder>{
     private DatabaseReference addUser = FirebaseDatabase.getInstance().getReference("User");
-    private DatabaseReference addFood = FirebaseDatabase.getInstance().getReference("GioHangDaDat");
     private DatabaseReference GhOder = FirebaseDatabase.getInstance().getReference("GioHang");
 
     private Context context;
     private ArrayList<GioHang> mList;
 
     Integer numberOder = 1;
+
+    String idGH = addUser.push().getKey();
 
     public GioHangAdapter(Context context , ArrayList<GioHang> mList){
         this.context = context;
@@ -76,7 +77,6 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
         holder.icHuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Cảnh báo");
                 builder.setIcon(R.drawable.ic_warning);
@@ -128,8 +128,8 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                         String sosp = holder.tvSoSP.getText().toString().trim();
                         String img = gioHang.hinh;
 
-                            User user = new User(name, sdt, diachi, ten, gia, sosp, img);
-                            addUser.push().setValue(user)
+                            User user = new User(idGH,name, sdt, diachi, ten, gia, sosp, img);
+                            addUser.child(idGH).setValue(user)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
@@ -137,7 +137,6 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                                             dialog.dismiss();
                                         }
                                     });
-
                             String id = gioHang.getId();
                             GhOder.child(id).removeValue();
                             mList.clear();

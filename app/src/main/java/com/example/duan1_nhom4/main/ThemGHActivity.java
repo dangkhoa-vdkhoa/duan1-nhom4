@@ -57,7 +57,6 @@ public class ThemGHActivity extends AppCompatActivity {
     Integer numberOder = 1;
     ImageView hinhsp;
     Button themvaogh;
-    private Uri imageUri;
 
     ImageView plussp,minussp;
 

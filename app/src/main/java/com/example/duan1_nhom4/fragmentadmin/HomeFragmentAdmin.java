@@ -3,6 +3,7 @@ package com.example.duan1_nhom4.fragmentadmin;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +36,8 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class HomeFragmentAdmin extends Fragment {
@@ -57,6 +58,11 @@ public class HomeFragmentAdmin extends Fragment {
     ImageView icAddFood,imgAdd;
 
     private MyAdapter myAdapter;
+
+    private Handler handler = new Handler();
+    private Runnable runnable;
+    private Timer timer;
+
 
 
     public HomeFragmentAdmin() {
@@ -82,6 +88,7 @@ public class HomeFragmentAdmin extends Fragment {
         slideIten.add(new SlideIten(R.drawable.hinh1));
         slideIten.add(new SlideIten(R.drawable.hinh2));
         slideIten.add(new SlideIten(R.drawable.hinh1));
+        startAutoScroll(3000);
 
         viewPager2.setAdapter(new SlideAdapter(slideIten,viewPager2));
 
@@ -176,5 +183,39 @@ public class HomeFragmentAdmin extends Fragment {
                 // Handle onCancelled
             }
         });
+    }
+
+    private void startAutoScroll(int delay) {
+        runnable = () -> {
+            int currentItem = viewPager2.getCurrentItem();
+            int totalItems = 3;
+
+            if (currentItem < totalItems - 1) {
+                viewPager2.setCurrentItem(currentItem + 1);
+            } else {
+                viewPager2.setCurrentItem(0);
+            }
+        };
+
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(runnable);
+            }
+        }, delay, delay);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        stopAutoScroll();
+    }
+
+    private void stopAutoScroll() {
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
     }
 }
