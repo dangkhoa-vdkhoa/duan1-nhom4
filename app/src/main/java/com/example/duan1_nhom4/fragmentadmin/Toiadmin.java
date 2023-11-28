@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class Toiadmin extends Fragment {
-    View btnToiVocher;
+
     View btnToiDiaChi;
     View btnToiDMK;
     View btnToiGioHang;
@@ -49,7 +49,6 @@ public class Toiadmin extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_toiadmin, container, false);
-        btnToiVocher = view.findViewById(R.id.btnToiVocher);
         btnToiDiaChi = view.findViewById(R.id.btnToiDiaChi);
         btnToiDMK = view.findViewById(R.id.btnToiDMK);
         btnToiGioHang = view.findViewById(R.id.btnToiGioHang);
@@ -84,12 +83,7 @@ public class Toiadmin extends Fragment {
 
 
 
-        btnToiVocher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "Vocher của bạn", Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
         btnToiDiaChi.setOnClickListener(new View.OnClickListener() {
             @Override

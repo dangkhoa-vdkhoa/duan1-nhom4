@@ -47,9 +47,10 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="#54000000"/>
+
         <LinearLayout
             android:layout_marginTop="15dp"
-            android:id="@+id/btnToiVocher"
+            android:id="@+id/btnToiDiaChi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -58,29 +59,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/baseline_flash_on_24"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="20dp"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                android:text="Vocher của bạn"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="15dp"
-            android:id="@+id/btnToiDiaChi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@+id/btnToiVocher">
-            <ImageView
-                android:layout_marginLeft="20dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/location"/>
+                android:src="@drawable/diachiadmin"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
