@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.duan1_nhom4.R;
-import com.example.duan1_nhom4.model.ThongTinUsers;
 import com.example.duan1_nhom4.model.Username;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -47,22 +46,19 @@ public class ThongTin extends AppCompatActivity {
         if (currentUser != null) {
             String userEmail = currentUser.getEmail();
             tvemailtk.setText(userEmail);
-
             DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getUid());
             userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
                         Username user = snapshot.getValue(Username.class);
-                        ThongTinUsers thongTinUsers = snapshot.getValue(ThongTinUsers.class);
-                        if (user != null || thongTinUsers != null) {
+//                        ThongTinUsers thongTinUsers = snapshot.getValue(ThongTinUsers.class);
+                        if (user != null ) {
                             String userName = user.getHoten();
                             tvtentk.setText(userName);
-
-                            String sodienthoai = thongTinUsers.getSdt();
+                            String sodienthoai = user.getSdt();
                             tvsdttk.setText(sodienthoai);
-
-                            String diachind = thongTinUsers.getDiachi();
+                            String diachind = user.getDiachi();
                             tvdiachitk.setText(diachind);
                         }
                     }

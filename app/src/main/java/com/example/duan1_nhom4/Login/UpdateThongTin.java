@@ -72,7 +72,6 @@ public class UpdateThongTin extends AppCompatActivity {
         String sdt = edtSDT.getText().toString().trim();
         String diachi = edtDiaChi.getText().toString().trim();
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-
         if (sdt.isEmpty() || diachi.isEmpty() ) {
             Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
         } else {

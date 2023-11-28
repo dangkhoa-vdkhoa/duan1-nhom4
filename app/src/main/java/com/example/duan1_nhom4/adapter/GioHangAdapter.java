@@ -32,6 +32,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
 
     private Context context;
     private ArrayList<GioHang> mList;
+
     Integer numberOder = 1;
 
     public GioHangAdapter(Context context , ArrayList<GioHang> mList){
@@ -54,6 +55,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
         holder.tvSoSP.setText(mList.get(position).getSoluong());
         Glide.with(context).load(mList.get(position).getHinh()).into(holder.ivImageGH);
         GioHang gioHang = mList.get(position);
+
         holder.ivMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,6 +103,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
 
         });
         holder.btnThanhToan.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getRootView().getContext());
@@ -117,9 +120,6 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                 btnXacNhanDonHang.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
-
-
                         String name = edtTenNguoiNhan.getText().toString().trim();
                         String sdt = edtSoDienThoai.getText().toString().trim();
                         String diachi = edtDiaChi.getText().toString().trim();
@@ -128,20 +128,19 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                         String sosp = holder.tvSoSP.getText().toString().trim();
                         String img = gioHang.hinh;
 
-                        User user = new User(name, sdt, diachi,ten,gia,sosp,img);
+                            User user = new User(name, sdt, diachi, ten, gia, sosp, img);
+                            addUser.push().setValue(user)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(context, "Đặt hàng thành công!!!", Toast.LENGTH_SHORT).show();
+                                            dialog.dismiss();
+                                        }
+                                    });
 
-                        addUser.push().setValue(user)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        Toast.makeText(context, "Đặt hàng thành công!!!", Toast.LENGTH_SHORT).show();
-                                        dialog.dismiss();
-                                    }
-                                });
-
-                        String id = gioHang.getId();
-                        GhOder.child(id).removeValue();
-                        mList.clear();
+                            String id = gioHang.getId();
+                            GhOder.child(id).removeValue();
+                            mList.clear();
                     }
                 });
 
@@ -155,7 +154,9 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                 dialog.show();
             }
         });
+
     }
+
 
     @Override
     public int getItemCount() {

@@ -30,7 +30,6 @@ public class Toiadmin extends Fragment {
     View btnToiVocher;
     View btnToiDiaChi;
     View btnToiDMK;
-    View btnThongBao;
     View btnToiGioHang;
     View btnToiLogOut;
 
@@ -52,7 +51,6 @@ public class Toiadmin extends Fragment {
         View view = inflater.inflate(R.layout.fragment_toiadmin, container, false);
         btnToiVocher = view.findViewById(R.id.btnToiVocher);
         btnToiDiaChi = view.findViewById(R.id.btnToiDiaChi);
-        btnThongBao = view.findViewById(R.id.btnThongBao);
         btnToiDMK = view.findViewById(R.id.btnToiDMK);
         btnToiGioHang = view.findViewById(R.id.btnToiGioHang);
         btnToiLogOut = view.findViewById(R.id.btnToiLogOut);
@@ -65,6 +63,7 @@ public class Toiadmin extends Fragment {
         if (currentUser != null) {
             String userEmail = currentUser.getEmail();
             tvToiEmail.setText(userEmail);
+
             DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getUid());
             userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -99,18 +98,6 @@ public class Toiadmin extends Fragment {
                 startActivity(intent);
                 Toast.makeText(getContext(), "Địa chỉ", Toast.LENGTH_SHORT).show();
             }
-        });
-        btnThongBao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//
-//                getActivity().getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.layouttoiadmin, new ThongBaoAdmin())
-//                        .addToBackStack(null)
-//                        .commit();
-            }
-
-
         });
         btnToiDMK.setOnClickListener(new View.OnClickListener() {
             @Override

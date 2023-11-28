@@ -32,7 +32,7 @@
                 android:id="@+id/tvToiNameND"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tên người dùng"
+                android:text="ADMIN"
                 android:textSize="20dp"/>
             <TextView
                 android:id="@+id/tvToiEmail"
@@ -113,27 +113,6 @@
                 android:text="Đổi mật khẩu"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_marginTop="15dp"
-            android:id="@+id/btnThongBao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@+id/btnToiDMK">
-            <ImageView
-                android:layout_marginLeft="20dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/admin"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="20dp"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                android:text="Thông Báo Người Dùng "/>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_marginTop="15dp"
@@ -141,7 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@+id/btnThongBao">
+            android:layout_below="@+id/btnToiDMK">
             <ImageView
                 android:layout_marginLeft="20dp"
                 android:layout_width="50dp"
