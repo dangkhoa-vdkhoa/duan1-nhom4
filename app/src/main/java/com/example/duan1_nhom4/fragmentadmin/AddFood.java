@@ -50,7 +50,7 @@ public class AddFood extends AppCompatActivity {
     private TextInputEditText edtTen;
     private TextInputEditText edtGia;
     private TextInputEditText edtMoTa;
-    String productID = root.push().getKey();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,8 +121,8 @@ public class AddFood extends AppCompatActivity {
                         String ten = edtTen.getText().toString().trim();
                         String gia = edtGia.getText().toString().trim();
                         String mota = edtMoTa.getText().toString().trim();
-                        Product product = new Product(uri.toString(),ten,gia,mota,productID);
                         String modelId = root.push().getKey();
+                        Product product = new Product(uri.toString(),ten,gia,mota,modelId);
                         root.child(modelId).setValue(product);
                         progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(AddFood.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();

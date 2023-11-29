@@ -94,4 +94,20 @@ public class Product implements Serializable {
     public void setNumberOder(int numberOder) {
         this.numberOder = numberOder;
     }
+
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }
