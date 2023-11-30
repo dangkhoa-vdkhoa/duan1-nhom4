@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -38,7 +39,6 @@ public class AddFood extends AppCompatActivity {
 
     private Button uploadBtn, showAllBtn;
     private ImageView imageView;
-
     private Button btnChooseFile;
     private ProgressBar progressBar;
 
@@ -110,7 +110,6 @@ public class AddFood extends AppCompatActivity {
     }
 
     private void uploadToFirebase(Uri uri){
-
         final StorageReference fileRef = reference.child(System.currentTimeMillis() + "." + getFileExtension(uri));
         fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -122,11 +121,18 @@ public class AddFood extends AppCompatActivity {
                         String gia = edtGia.getText().toString().trim();
                         String mota = edtMoTa.getText().toString().trim();
                         String modelId = root.push().getKey();
-                        Product product = new Product(uri.toString(),ten,gia,mota,modelId);
-                        root.child(modelId).setValue(product);
-                        progressBar.setVisibility(View.INVISIBLE);
-                        Toast.makeText(AddFood.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
-                        imageView.setImageResource(R.drawable.logo);
+
+                        if (ten.isEmpty() || gia.isEmpty() || mota.isEmpty()) {
+                            Toast.makeText(AddFood.this, "Vui lòng điền đầy đủ thông tin!!!", Toast.LENGTH_SHORT).show();
+                        } else if (!TextUtils.isDigitsOnly(gia)) {
+                            Toast.makeText(AddFood.this, "Vui lòng nhập lại giá sản pẩm !!!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Product product = new Product(uri.toString(), ten, gia, mota, modelId);
+                            root.child(modelId).setValue(product);
+                            progressBar.setVisibility(View.INVISIBLE);
+                            Toast.makeText(AddFood.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                            imageView.setImageResource(R.drawable.logo);
+                        }
                     }
                 });
             }

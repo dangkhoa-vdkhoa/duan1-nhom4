@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.duan1_nhom4.adapter.GioHangAdapter;
 import com.example.duan1_nhom4.adapter.HomeAdapter;
+import com.example.duan1_nhom4.fragment.ToiFragment;
 import com.example.duan1_nhom4.model.GioHang;
 import com.example.duan1_nhom4.model.Product;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,12 +28,15 @@ public class GioHangActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     private GioHangAdapter gioHangAdapter;
     ArrayList<GioHang> list;
+
+    ImageView back;
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference("GioHang");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gio_hang);
         recyclerView = findViewById(R.id.recyclerViewGioHang);
+        back = findViewById(R.id.btnBack);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
@@ -52,6 +59,12 @@ public class GioHangActivity extends AppCompatActivity {
             }
         });
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
     }
 }

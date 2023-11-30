@@ -141,6 +141,7 @@ public class ThemGHActivity extends AppCompatActivity {
                                 Toast.makeText(ThemGHActivity.this, "Lỗi khi thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
                             }
                         });
+                    onBackPressed();
             }
         });
 

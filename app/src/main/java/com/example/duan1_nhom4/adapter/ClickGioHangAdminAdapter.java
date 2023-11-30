@@ -51,13 +51,13 @@ public class ClickGioHangAdminAdapter extends RecyclerView.Adapter<ClickGioHangA
         holder.tien.setText(mList.get(position).getGia());
         holder.sosp.setText(mList.get(position).getSosp());
         Glide.with(context).load(mList.get(position).getImg()).into(holder.img);
-//        String trangthai ="";
-//        if (mList.get(position).getTrangThai() == 1){
-//            trangthai = "Đã Xác Nhận";
-//        }else {
-//            trangthai = "Chưa Xác Nhận";
-//        }
-        holder.xn.setText("Chưa Xác Nhận");
+        if (mList.get(position).getTrangThai() == 1){
+            holder.xn.setText("Đã Xác Nhận");
+            holder.xn.setTextColor(Color.GREEN);
+        }else {
+            holder.xn.setText("Chưa Xác Nhận");
+            holder.xn.setTextColor(Color.RED);
+        }
 
         int tt = Integer.parseInt((mList.get(position).getGia()))*Integer.parseInt(mList.get(position).getSosp());
         holder.tongtien.setText(String.valueOf(tt));
@@ -68,7 +68,6 @@ public class ClickGioHangAdminAdapter extends RecyclerView.Adapter<ClickGioHangA
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Xác Nhận Đơn Hàng");
                 builder.setIcon(R.drawable.ic_sticky_note_2);
-                builder.setMessage("Are you sure? ");
                 Map<String, Object> updates = new HashMap<>();
                 builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
                     @Override

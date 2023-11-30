@@ -2,6 +2,7 @@ package com.example.duan1_nhom4.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -128,7 +129,12 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                         String sosp = holder.tvSoSP.getText().toString().trim();
                         String img = gioHang.hinh;
 
-                            User user = new User(idGH,name, sdt, diachi, ten, gia, sosp, img);
+                        if (name.isEmpty() || sdt.isEmpty() || diachi.isEmpty()) {
+                            Toast.makeText(context, "Vui lòng điền đầy đủ thông tin!!!", Toast.LENGTH_SHORT).show();
+                        } else if (!TextUtils.isDigitsOnly(sdt)) {
+                            Toast.makeText(context, "Số điện thoại sai định dạng!!!", Toast.LENGTH_SHORT).show();
+                        }else {
+                            User user = new User(idGH, name, sdt, diachi, ten, gia, sosp, img);
                             addUser.child(idGH).setValue(user)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
@@ -140,6 +146,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
                             String id = gioHang.getId();
                             GhOder.child(id).removeValue();
                             mList.clear();
+                        }
                     }
                 });
 

@@ -118,7 +118,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (currentUser != null) {
-                    replaceFragmenthome(new ToiFragment());
+                    replaceFragmentHome(new ToiFragment());
                 } else {
                     Toast.makeText(requireContext(), "Vui lòng đăng nhập để xem thông tin tài khoản", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(requireContext(), LoginApp.class);
@@ -180,7 +180,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void replaceFragmenthome(Fragment fragment){
+    private void replaceFragmentHome(Fragment fragment){
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout,fragment);
