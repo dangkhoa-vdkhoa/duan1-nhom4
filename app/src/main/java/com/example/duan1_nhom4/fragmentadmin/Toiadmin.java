@@ -105,7 +105,6 @@ public class Toiadmin extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), GioHangActivity.class);
                 startActivity(intent);
-//                Toast.makeText(getContext(), "Giỏ hàng", Toast.LENGTH_SHORT).show();
             }
         });
         btnToiLogOut.setOnClickListener(new View.OnClickListener() {

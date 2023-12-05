@@ -1,12 +1,13 @@
 package com.example.duan1_nhom4.gioithieuActivity;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.duan1_nhom4.R;
 import com.example.duan1_nhom4.main.MainActivity;
@@ -14,8 +15,6 @@ import com.example.duan1_nhom4.main.WelcomeScreen;
 import com.ramotion.paperonboarding.PaperOnboardingEngine;
 import com.ramotion.paperonboarding.PaperOnboardingPage;
 import com.ramotion.paperonboarding.listeners.PaperOnboardingOnRightOutListener;
-import android.content.Context;
-import android.content.SharedPreferences;
 
 import java.util.ArrayList;
 
@@ -78,13 +77,13 @@ public class GioiThieu extends AppCompatActivity {
     private ArrayList<PaperOnboardingPage> getPaperOnboardingPage(){
         PaperOnboardingPage scr1 = new PaperOnboardingPage("Miễn phí",
                 "Tham gia ứng dụng để được nhận những ưu đãi",
-                Color.parseColor("#FFFFCC"), R.drawable.freeship, R.drawable.footer);
+                Color.parseColor("#E7F3E6"), R.drawable.freeship, R.drawable.footer);
         PaperOnboardingPage scr2 = new PaperOnboardingPage("Thanh toán",
                 "Dễ dàng thanh toán với mọi hình thức",
                 Color.parseColor("#FFFFFF"), R.drawable.thanhtoan, R.drawable.footer);
         PaperOnboardingPage scr3 = new PaperOnboardingPage("Thuận tiện",
                 "Dễ dàng thanh toán với mọi hình thức",
-                Color.parseColor("#9B90BC"), R.drawable.footer, R.drawable.footer);
+                Color.parseColor("#98E4D3"), R.drawable.footer, R.drawable.footer);
 
         ArrayList<PaperOnboardingPage> elements = new ArrayList<>();
         elements.add(scr1);

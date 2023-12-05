@@ -1,7 +1,5 @@
 package com.example.duan1_nhom4.main;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -44,11 +42,17 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new DonHangFragment());
                 }else {
                     Toast.makeText(this, "Vui lòng đăng nhập !!!", Toast.LENGTH_SHORT).show();
+                    Intent intents = new Intent(this, LoginApp.class);
+                    startActivity(intents);
+                }
+            }else if (item.getItemId() == R.id.profile){
+                if (currentUser != null){
+                    replaceFragment(new ToiFragment());
+                }else {
+                    Toast.makeText(this, "Vui lòng đăng nhập để xem Thông Tin Tài Khoản", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(this, LoginApp.class);
                     startActivity(intent);
                 }
-
-            }else if (item.getItemId() == R.id.profile){
                 replaceFragment(new ToiFragment());
             }
             return true;
