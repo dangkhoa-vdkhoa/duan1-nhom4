@@ -98,7 +98,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear(); // Clear the previous list items
-
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         Product model = dataSnapshot.getValue(Product.class);
                         list.add(model);

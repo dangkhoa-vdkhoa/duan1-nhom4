@@ -14,7 +14,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.duan1_nhom4.Login.LoginApp;
 import com.example.duan1_nhom4.R;
 import com.example.duan1_nhom4.main.ThemGHActivity;
 import com.example.duan1_nhom4.model.Product;
@@ -67,6 +66,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
                     context.startActivity(intent);
                 }else {
                     Toast.makeText(context, "Vui lòng đăng nhập để mua hàng", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -95,5 +95,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
             tvGiaFood = itemView.findViewById(R.id.tvGiaFoodHome);
 
         }
+
+
     }
+
 }

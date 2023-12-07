@@ -46,13 +46,6 @@ public class LoginApp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_app);
 
-        TextView btnback = findViewById(R.id.btnbacklogin);
-        btnback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
         edtnameLogin = findViewById(R.id.edtnameLogin);
         edtpassLogin = findViewById(R.id.edtpassLogin);
         mAuthLogin = FirebaseAuth.getInstance();
