@@ -29,7 +29,7 @@ public class AdminActivity extends AppCompatActivity {
 
         bottomNavigationViewAdmin.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.home) {
-                replaceFragment(new HomeFragment());
+                replaceFragment(new HomeFragmentAdmin());
             }else if (item.getItemId() == R.id.order){
                 replaceFragment(new DonHangAdminFragment());
             }else if (item.getItemId() == R.id.profile){

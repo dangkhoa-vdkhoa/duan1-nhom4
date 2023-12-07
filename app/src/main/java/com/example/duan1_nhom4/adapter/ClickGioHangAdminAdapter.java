@@ -51,6 +51,7 @@ public class ClickGioHangAdminAdapter extends RecyclerView.Adapter<ClickGioHangA
         holder.tien.setText(mList.get(position).getGia());
         holder.sosp.setText(mList.get(position).getSosp());
         Glide.with(context).load(mList.get(position).getImg()).into(holder.img);
+
         if (mList.get(position).getTrangThai() == 1){
             holder.xn.setText("Đã Xác Nhận");
             holder.xn.setTextColor(Color.GREEN);
@@ -73,14 +74,14 @@ public class ClickGioHangAdminAdapter extends RecyclerView.Adapter<ClickGioHangA
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String id = user.getId();
-                        int tthai = 1;
-                        updates.put("trangThai",tthai);
+                        updates.put("trangThai",1);
+                        mList.clear();
                         addUser.child(id).updateChildren(updates)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
                                         Toast.makeText(context, "Xác Nhận Thành Công", Toast.LENGTH_SHORT).show();
-                                        mList.clear();
+
                                     }
                                 });
                         holder.xn.setText("Đã Xác Nhận");
@@ -91,14 +92,14 @@ public class ClickGioHangAdminAdapter extends RecyclerView.Adapter<ClickGioHangA
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String id = user.getId();
-                        int tthai = 0;
-                        updates.put("trangThai",tthai);
+                        updates.put("trangThai",0);
+                        mList.clear();
                         addUser.child(id).updateChildren(updates)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
                                         //Toast.makeText(context, "Xác Nhận Thành Công", Toast.LENGTH_SHORT).show();
-                                        mList.clear();
+//                                        mList.clear();
                                     }
                                 });
                         holder.xn.setTextColor(Color.RED);
@@ -106,6 +107,7 @@ public class ClickGioHangAdminAdapter extends RecyclerView.Adapter<ClickGioHangA
                     }
                 });
                 AlertDialog alertDialog = builder.create();
+
                 alertDialog.show();
             }
         });
